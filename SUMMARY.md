@@ -1,5 +1,8 @@
 # Summary
 
-* [1.计算机系统漫游](chapter1.md)
-* [2.信息的表示和处理](chapter2.md)
+* [1.A Tour of Computer Systems](chapter1.md)
+
+## Part 1 Program Structure and Execution
+
+* [2.Representing and Manipulating Information](chapter2.md)
 

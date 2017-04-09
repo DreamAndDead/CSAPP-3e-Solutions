@@ -1,6 +1,3 @@
-## 2.55
-
-```c
 /*
  * show-bytes.c
  */
@@ -30,6 +27,20 @@ void show_pointer(void* x) {
   show_bytes((byte_pointer) &x, sizeof(void*));
 }
 
+// 2.57 changes
+void show_short(short x) {
+  show_bytes((byte_pointer) &x, sizeof(short));
+}
+
+void show_long(long x) {
+  show_bytes((byte_pointer) &x, sizeof(long));
+}
+
+void show_double(double x) {
+  show_bytes((byte_pointer) &x, sizeof(double));
+}
+// 2.57 changes end
+
 void test_show_bytes(int val) {
   int ival = val;
   float fval = (float) ival;
@@ -38,6 +49,16 @@ void test_show_bytes(int val) {
   show_int(ival);
   show_float(fval);
   show_pointer(pval);
+
+  // 2.57 changes
+  short sval = (short) ival;
+  long lval = (long) ival;
+  double dval = (double) ival;
+
+  show_short(sval);
+  show_long(lval);
+  show_double(dval);
+  // 2.57 changes end
 }
 
 int main(int argc, char* argv[]) {
@@ -49,22 +70,5 @@ int main(int argc, char* argv[]) {
   test_show_bytes(test_num);
   return 0;
 }
-```
 
-uname -mr:
 
-    4.4.26-gentoo x86_64
-
-compile:
-
-    gcc -m64 show-bytes.c
-
-run:
-
-    ./a.out 328
-
-output:
-
-     48 01 00 00
-     00 00 a4 43
-     a8 1e 71 ee fc 7f 00 00

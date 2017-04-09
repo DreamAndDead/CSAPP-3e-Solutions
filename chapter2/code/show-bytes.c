@@ -1,15 +1,9 @@
 /*
  * show-bytes.c
- *
- * linux:
- *   gcc -m64 show-bytes.c
- * or
- *   gcc -m32 show-bytes.c
- * run it
- *   ./a.out
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef unsigned char* byte_pointer;
 
@@ -44,7 +38,11 @@ void test_show_bytes(int val) {
 }
 
 int main(int argc, char* argv[]) {
-  int test_num = 328;
+  if (argc != 2) {
+    printf("usage: ./a.out [int number]");
+    return 1;
+  }
+  int test_num = atoi(argv[1]);
   test_show_bytes(test_num);
   return 0;
 }

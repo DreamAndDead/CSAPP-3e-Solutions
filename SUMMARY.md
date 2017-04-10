@@ -11,4 +11,7 @@
     - [2.58](chapter2/2.58.md)
     - [2.59](chapter2/2.59.md)
     - [2.60](chapter2/2.60.md)
+    - [2.61](chapter2/2.61.md)
+    - [2.62](chapter2/2.62.md)
+    - [2.63](chapter2/2.63.md)
 

@@ -3,7 +3,6 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 typedef unsigned char* byte_pointer;
 
@@ -38,11 +37,8 @@ void test_show_bytes(int val) {
 }
 
 int main(int argc, char* argv[]) {
-  if (argc != 2) {
-    printf("usage: ./a.out [int number]");
-    return 1;
-  }
-  int test_num = atoi(argv[1]);
+  int test_num = 328;
+
   test_show_bytes(test_num);
   return 0;
 }

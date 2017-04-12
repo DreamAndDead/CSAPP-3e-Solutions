@@ -3,6 +3,7 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
 
 typedef unsigned char* byte_pointer;
 
@@ -17,9 +18,7 @@ int is_little_endian() {
 }
 
 int main(int argc, char* argv[]) {
-  if (is_little_endian()) {
-    printf("is little endian");
-  }
+  assert(is_little_endian());
   return 0;
 }
 

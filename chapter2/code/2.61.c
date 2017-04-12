@@ -1,4 +1,9 @@
+/*
+ * 2.61.c
+ */
+
 #include <stdio.h>
+#include <assert.h>
 
 int A(int x) {
   return !~x;
@@ -17,25 +22,30 @@ int D(int x) {
 }
 
 int main(int argc, char* argv[]) {
-  // test nums for A B C D
-  int test_nums[] = {~0, 0, 0x1234ff, 0x1234};
+  int all_bit_one = ~0;
+  int all_bit_zero = 0;
 
-  for (int i = 0; i < 4; i++) {
-    int x = test_nums[i];
+  assert(A(all_bit_one));
+  assert(!B(all_bit_one));
+  assert(C(all_bit_one));
+  assert(!D(all_bit_one));
 
-    if (A(x)) {
-      printf("%x matchs A\n", x);
-    }
-    if (B(x)) {
-      printf("%x matchs B\n", x);
-    }
-    if (C(x)) {
-      printf("%x matchs C\n", x);
-    }
-    if (D(x)) {
-      printf("%x matchs D\n", x);
-    }
-  }
+  assert(!A(all_bit_zero));
+  assert(B(all_bit_zero));
+  assert(!C(all_bit_zero));
+  assert(D(all_bit_zero));
+
+  // test magic number 0x1234ff
+  assert(!A(0x1234ff));
+  assert(!B(0x1234ff));
+  assert(C(0x1234ff));
+  assert(D(0x1234ff));
+
+  // test magic number 0x1234
+  assert(!A(0x1234));
+  assert(!B(0x1234));
+  assert(!C(0x1234));
+  assert(D(0x1234));
 
   return 0;
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <assert.h>
 
 int main(int argc, char* argv[]) {
   size_t mask = 0xff;
@@ -6,7 +7,7 @@ int main(int argc, char* argv[]) {
   size_t y = 0x76543210;
 
   size_t res = (x & mask) | (y & ~mask);
-  printf("%zX", res);
+  assert(res == 0x765432EF);
 
   return 0;
 }

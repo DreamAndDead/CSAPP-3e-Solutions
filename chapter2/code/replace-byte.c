@@ -3,6 +3,7 @@
  */
 
 #include <stdio.h>
+#include <assert.h>
 
 unsigned replace_byte(unsigned x, int i, unsigned char b) {
   if (i < 0) {
@@ -24,6 +25,8 @@ unsigned replace_byte(unsigned x, int i, unsigned char b) {
 int main(int argc, char *argv[]) {
   unsigned rep_0 = replace_byte(0x12345678, 0, 0xAB);
   unsigned rep_3 = replace_byte(0x12345678, 3, 0xAB);
-  printf("%X %X", rep_0, rep_3);
+
+  assert(rep_0 == 0x123456AB);
+  assert(rep_3 == 0xAB345678);
   return 0;
 }

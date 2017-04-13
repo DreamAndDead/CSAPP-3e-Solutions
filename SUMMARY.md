@@ -16,24 +16,24 @@
     - [2.63](chapter2/2.63.md)
     - [2.64](chapter2/2.64.md)
     - [2.65](chapter2/2.65.md)
-    <!--- [2.66](chapter2/2.66.md)-->
-    <!--- [2.67](chapter2/2.67.md)-->
-    <!--- [2.68](chapter2/2.68.md)-->
-    <!--- [2.69](chapter2/2.69.md)-->
-    <!--- [2.70](chapter2/2.70.md)-->
-    <!--- [2.71](chapter2/2.71.md)-->
-    <!--- [2.72](chapter2/2.72.md)-->
-    <!--- [2.73](chapter2/2.73.md)-->
-    <!--- [2.74](chapter2/2.74.md)-->
-    <!--- [2.75](chapter2/2.75.md)-->
-    <!--- [2.76](chapter2/2.76.md)-->
-    <!--- [2.77](chapter2/2.77.md)-->
-    <!--- [2.78](chapter2/2.78.md)-->
-    <!--- [2.79](chapter2/2.79.md)-->
-    <!--- [2.80](chapter2/2.80.md)-->
-    <!--- [2.81](chapter2/2.81.md)-->
-    <!--- [2.82](chapter2/2.82.md)-->
-    <!--- [2.83](chapter2/2.83.md)-->
+    - [2.66](chapter2/2.66.md)
+    - [2.67](chapter2/2.67.md)
+    - [2.68](chapter2/2.68.md)
+    - [2.69](chapter2/2.69.md)
+    - [2.70](chapter2/2.70.md)
+    - [2.71](chapter2/2.71.md)
+    - [2.72](chapter2/2.72.md)
+    - [2.73](chapter2/2.73.md)
+    - [2.74](chapter2/2.74.md)
+    - [2.75](chapter2/2.75.md)
+    - [2.76](chapter2/2.76.md)
+    - [2.77](chapter2/2.77.md)
+    - [2.78](chapter2/2.78.md)
+    - [2.79](chapter2/2.79.md)
+    - [2.80](chapter2/2.80.md)
+    - [2.81](chapter2/2.81.md)
+    - [2.82](chapter2/2.82.md)
+    - [2.83](chapter2/2.83.md)
     <!--- [2.84](chapter2/2.84.md)-->
     <!--- [2.85](chapter2/2.85.md)-->
     <!--- [2.86](chapter2/2.86.md)-->

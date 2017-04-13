@@ -1,5 +1,5 @@
 /*
- * %FILE%
+ * %FFILE%
  */
 #include <stdio.h>
 #include <assert.h>

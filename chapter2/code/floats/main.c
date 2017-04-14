@@ -16,7 +16,7 @@ float u2f(unsigned u) {
 
 void test_float_negate(void) {
   for (unsigned n = 0; n <= 0xFFFFFFFF; n++) {
-    if (n % 0x800000 == 0) {
+    if (n % 0x08000000 == 0) {
       printf("processing: %x\n", n);
     }
 

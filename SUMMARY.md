@@ -34,17 +34,17 @@
     - [2.81](chapter2/2.81.md)
     - [2.82](chapter2/2.82.md)
     - [2.83](chapter2/2.83.md)
-    <!--- [2.84](chapter2/2.84.md)-->
-    <!--- [2.85](chapter2/2.85.md)-->
-    <!--- [2.86](chapter2/2.86.md)-->
-    <!--- [2.87](chapter2/2.87.md)-->
-    <!--- [2.88](chapter2/2.88.md)-->
-    <!--- [2.89](chapter2/2.89.md)-->
-    <!--- [2.90](chapter2/2.90.md)-->
-    <!--- [2.91](chapter2/2.91.md)-->
-    <!--- [2.92](chapter2/2.92.md)-->
-    <!--- [2.93](chapter2/2.93.md)-->
-    <!--- [2.94](chapter2/2.94.md)-->
-    <!--- [2.95](chapter2/2.95.md)-->
-    <!--- [2.96](chapter2/2.96.md)-->
-    <!--- [2.97](chapter2/2.97.md)-->
+    - [2.84](chapter2/2.84.md)
+    - [2.85](chapter2/2.85.md)
+    - [2.86](chapter2/2.86.md)
+    - [2.87](chapter2/2.87.md)
+    - [2.88](chapter2/2.88.md)
+    - [2.89](chapter2/2.89.md)
+    - [2.90](chapter2/2.90.md)
+    - [2.91](chapter2/2.91.md)
+    - [2.92](chapter2/2.92.md)
+    - [2.93](chapter2/2.93.md)
+    - [2.94](chapter2/2.94.md)
+    - [2.95](chapter2/2.95.md)
+    - [2.96](chapter2/2.96.md)
+    - [2.97](chapter2/2.97.md)

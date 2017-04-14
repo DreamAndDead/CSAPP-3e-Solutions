@@ -8,6 +8,7 @@ PROGS = $(patsubst %.c,%,$(SRCS))
 PROGS_TEST = $(patsubst %.c,%.test,$(SRCS))
 
 all: $(PROGS)
+	(cd floats; make)
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $<
@@ -15,4 +16,5 @@ all: $(PROGS)
 test: $(PROGS_TEST)
 
 %.test: %
+	(cd floats; make test)
 	./$<

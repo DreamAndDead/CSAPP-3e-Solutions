@@ -14,7 +14,7 @@ all: $(PROGS)
 	$(CC) $(CFLAGS) -o $@ $<
 
 test: $(PROGS_TEST)
+	(cd floats; make test)
 
 %.test: %
-	(cd floats; make test)
 	./$<

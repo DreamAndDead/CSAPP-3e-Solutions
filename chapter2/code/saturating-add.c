@@ -10,7 +10,7 @@ int saturating_add(int x, int y) {
   int sig_mask = INT_MIN;
   /*
    * if x > 0, y > 0 but sum < 0, it's a positive overflow
-   * if x < 0, y < 0 but sum > 0, it's a negetive overflow
+   * if x < 0, y < 0 but sum >= 0, it's a negetive overflow
    */
   int pos_over = !(x & sig_mask) && !(y & sig_mask) && (sum & sig_mask);
   int neg_over = (x & sig_mask) && (y & sig_mask) && !(sum & sig_mask);

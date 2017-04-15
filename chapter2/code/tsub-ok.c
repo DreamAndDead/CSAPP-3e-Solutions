@@ -16,12 +16,12 @@ int tsub_ok(int x, int y) {
   int pos_over = x > 0 && neg_y > 0 && sum < 0;
   int neg_over = x < 0 && neg_y < 0 && sum >= 0;
 
-  return pos_over || neg_over;
+  return !(pos_over || neg_over);
 }
 
 int main(int argc, char* argv[]) {
-  assert(tsub_ok(0x00, INT_MIN));
-  assert(!tsub_ok(0x00, 0x00));
+  assert(!tsub_ok(0x00, INT_MIN));
+  assert(tsub_ok(0x00, 0x00));
   return 0;
 }
 

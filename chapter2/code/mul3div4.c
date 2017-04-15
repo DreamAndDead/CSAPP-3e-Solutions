@@ -1,11 +1,13 @@
 /*
- * divide-power2.c
+ * mul3div4.c
  */
 #include <stdio.h>
 #include <assert.h>
 #include <limits.h>
 
 /*
+ * code from 2.78
+ *
  * Divide by power of 2, -> x/2^k
  * Assume 0 <= k < w-1
  */
@@ -15,10 +17,15 @@ int divide_power2(int x, int k) {
   return x >> k;
 }
 
+int mul3div4(int x) {
+  int mul3 = (x << 1) + x;
+  return divide_power2(mul3, 2);
+}
+
 int main(int argc, char* argv[]) {
-  int x = 0x80000007;
-  assert(divide_power2(x, 1) == x / 2);
-  assert(divide_power2(x, 2) == x / 4);
+  int x = 0x87654321;
+  assert(mul3div4(x) == x * 3 / 4);
   return 0;
 }
+
 

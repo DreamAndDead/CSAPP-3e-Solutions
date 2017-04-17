@@ -3,6 +3,7 @@
  */
 #include <stdio.h>
 #include <assert.h>
+#include <limits.h>
 #include "float-i2f.h"
 
 /*

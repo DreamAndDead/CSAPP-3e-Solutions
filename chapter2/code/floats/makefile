@@ -2,9 +2,10 @@
 # makefile
 #
 CFLAGS = -m64 -std=c99
+SRCS = $(wildcard *.c)
 
 all:
-	gcc $(CFLAGS) float-negate.c main.c -o main
+	gcc $(CFLAGS) $(SRCS) -lcriterion -o main
 
 test:
 	./main

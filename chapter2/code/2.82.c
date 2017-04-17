@@ -12,7 +12,7 @@ int A(int x, int y) {
 }
 
 /*
- * correct
+ * right
  *
  * ((x + y) << 4) + y - x
  *   =>
@@ -27,7 +27,7 @@ int B(int x, int y) {
 }
 
 /*
- * correct
+ * right
  *
  * ~x + ~y + 1
  *   =>
@@ -46,7 +46,7 @@ int C(int x, int y) {
 }
 
 /*
- * correct
+ * right
  *
  * (ux - uy) == -(unsigned) (y - x)
  *   =>
@@ -62,7 +62,7 @@ int D(int x, int y) {
 }
 
 /*
- * correct
+ * right
  *
  * x >> 2 << 2
  *   =>

@@ -1,3 +1,7 @@
 # CSAPP-3rd-Solutions
 
-Begin from 2.55, update to 2.78
+Finish Chapter 2
+
+todo:
+- Chapter 3
+- etc

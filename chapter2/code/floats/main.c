@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <math.h>
 #include <limits.h>
-#include <criterion/criterion.h>
+#include "../lib/random.h"
 #include "float-negate.h"
 #include "float-absval.h"
 #include "float-twice.h"
@@ -21,38 +21,54 @@ float u2f(unsigned u) {
   return *(float*) &u;
 }
 
-void test(unsigned n) {
-  float f = u2f(n);
+int main(int argc, char* argv[]) {
+  init_seed();
 
-  if (isnan(f)) {
-    assert(float_negate(n) == n);
-    assert(float_absval(n) == n);
-    assert(float_twice(n) == n);
-    assert(float_half(n) == n);
-    assert(float_f2i(n) == 0x80000000);
-  } else {
-    assert(u2f(float_negate(n)) == -f);
-    assert(u2f(float_absval(n)) == fabsf(f));
-    assert(u2f(float_twice(n)) == f * 2.0);
-    assert(u2f(float_half(n)) == f * 0.5);
-    if (f > (float)INT_MAX || f < (float)INT_MIN) {
-      assert(float_f2i(n) == 0x80000000);
-    } else {
-      assert(float_f2i(n) == (int)f);
+  for (unsigned n = 0, round = 0; !round; n = n+1) {
+    if (n == 0xFFFF) {
+      round++;
     }
-    assert(u2f(float_i2f(n)) == (float)n);
+
+    unsigned r = random_int();
+    /*r = n;*/
+    printf("r:\t0x%.8X\t%d\n", r, r);
+
+    float f = u2f(r);
+    printf("f:\t0x%.8X\t%.50f\n", f2u(f), f);
+
+    float fmul2 = f * 2.0;
+    printf("fmul2:\t0x%.8X\t%.50f\n", f2u(fmul2), fmul2);
+
+    float fdiv2 = f * 0.5;
+    printf("fdiv2:\t0x%.8X\t%.50f\n", f2u(fdiv2), fdiv2);
+
+    int f2i = (int)f;
+    printf("f2i:\t0x%.8X\t%d\n", f2i, f2i);
+
+    float i2f = (float)(int)r;
+    printf("r:\t0x%.8X\t%d\n", r, r);
+    printf("i2f:\t0x%.8X\t%.50f\n", f2u(i2f), i2f);
+
+    if (isnan(f)) {
+      assert(float_negate(r) == r);
+      assert(float_absval(r) == r);
+      assert(float_twice(r) == r);
+      assert(float_half(r) == r);
+      assert(float_f2i(r) == f2i);
+    } else {
+      assert(u2f(float_negate(r)) == -f);
+      assert(u2f(float_absval(r)) == fabsf(f));
+      assert(u2f(float_twice(r)) == fmul2);
+      assert(u2f(float_half(r)) == fdiv2);
+      /* whether f > (float)INT_MAX || f < (float)INT_MIN) */
+      assert(float_f2i(r) == f2i);
+
+      float my_i2f = u2f(float_i2f(r));
+      printf("my_i2f:\t0x%.8X\t%.50f\n", f2u(my_i2f), my_i2f);
+      assert(my_i2f == i2f);
+    }
+
+    printf("\n");
+
   }
-}
-
-void test_suite(void) {
-  for (unsigned n = 0; n < 0xFFFFFFFF; n++) {
-    printf("processing: 0x%.8x\n", n);
-
-    test(n);
-  }
-  test(0xFFFFFFFF);
-}
-
-Test(simple, test) {
-  cr_assert(0, "hello world");
 }

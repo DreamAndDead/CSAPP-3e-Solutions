@@ -1,3 +1,14 @@
 {
-  "plugins": [ "include" ]
+  "plugins": [ "include", "disqus", "mathjax", "ga" ],
+  "pluginsConfig": {
+    "mathjax": {
+      "forceSVG": true
+    },
+    "disqus": {
+      "shortName": "dreamanddead"
+    },
+    "ga": {
+      "token": "UA-93899485-2"
+    }
+  }
 }

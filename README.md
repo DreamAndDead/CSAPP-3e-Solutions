@@ -1,7 +1,7 @@
 # CSAPP-3rd-Solutions
 
-Finish Chapter 2
-
-todo:
-- Chapter 3
-- etc
+|Chapter|Status|
+|----|-----|
+|2|finished|
+|3|todo: 3.67,3,72, finished: others|
+|n|todo|

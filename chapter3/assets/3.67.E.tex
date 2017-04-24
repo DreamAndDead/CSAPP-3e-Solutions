@@ -1,0 +1,34 @@
+\documentclass[convert]{standalone}
+\usepackage{tikz}
+\begin{document}
+
+\begin{tikzpicture}[yscale=0.1]
+  % new stack space
+  \draw (0,-8) node[anchor=east] {-8} rectangle (4, 104);
+  \draw (0,104) node[anchor=east] {104};
+  % set x y z &z
+  \foreach \x in {0,8,16,24,32} {
+    \draw (0,\x) node[anchor=east] {\x} -- (4, \x);
+  }
+  \draw (2,4) node {x};
+  \draw (2,12) node {y};
+  \draw (2,20) node {\&z};
+  \draw (2,28) node {z};
+  % %rsi
+  \draw (0,64) node[anchor=east] {64} -- (4,64);
+  % mark regs
+  \draw [->] (4.5,0) node[anchor=west] {\%rsp in eval} -- (4.1,0);
+  \draw [->] (4.5,-8) node[anchor=west] {\%rsp in process} -- (4.1,-8);
+  \draw [->] (4.5,64) node[anchor=west] {\%rdi(eval pass in)} -- (4.1,64);
+  \draw [->] (4.5,72) node[anchor=west] {\%rax(process pass out)} -- (4.1,65);
+  % process stack
+  % set x y z
+  \foreach \x in {72,80,88} {
+    \draw (0,\x) node[anchor=east] {\x} -- (4, \x);
+  }
+  \draw (2,68) node {y};
+  \draw (2,76) node {x};
+  \draw (2,84) node {z};
+\end{tikzpicture}
+
+\end{document}

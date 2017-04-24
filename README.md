@@ -2,6 +2,7 @@
 
 |Chapter|Status|
 |----|-----|
+|1|finished|
 |2|finished|
-|3|todo: 3.67,3,72, finished: others|
+|3|finished|
 |n|todo|

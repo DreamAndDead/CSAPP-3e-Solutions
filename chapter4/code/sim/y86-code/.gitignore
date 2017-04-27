@@ -1,1 +1,8 @@
+*.o
+*.yis
+*~
 *.yo
+*.pipe
+*.seq
+*.seq+
+core

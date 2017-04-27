@@ -45,7 +45,7 @@ psim: psim.c sim.h pipe-$(VERSION).hcl $(MISCDIR)/isa.c $(MISCDIR)/isa.h
 		$(MISCDIR)/isa.c $(LIBS)
 
 # This rule builds driver programs for Part C of the Architecture Lab
-drivers: 
+drivers:
 	./gen-driver.pl -n 4 -f ncopy.ys > sdriver.ys
 	../misc/yas sdriver.ys
 	./gen-driver.pl -n 63 -f ncopy.ys > ldriver.ys
@@ -58,6 +58,7 @@ drivers:
 
 
 clean:
-	rm -f psim pipe-*.c *.o *.exe *~ 
+	rm -f psim pipe-*.c *.o *.exe *~
+	rm -f ldriver.ys ldriver.yo sdriver.ys sdriver.yo
 
 

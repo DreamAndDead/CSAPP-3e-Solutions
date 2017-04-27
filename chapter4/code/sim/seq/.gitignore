@@ -1,2 +1,8 @@
-seq-std.c
 ssim
+ssim+
+seq*-*.c
+*.o
+*~
+*.exe
+*.yo
+*.ys

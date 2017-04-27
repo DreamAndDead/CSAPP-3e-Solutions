@@ -35,7 +35,7 @@ INC=$(TKINC) -I$(MISCDIR) $(GUIMODE)
 LIBS=$(TKLIBS) -lm
 YAS=../misc/yas
 
-all: ssim
+all: ssim ssim+
 
 # This rule builds the SEQ simulator (ssim)
 ssim: seq-$(VERSION).hcl ssim.c  sim.h $(MISCDIR)/isa.c $(MISCDIR)/isa.h

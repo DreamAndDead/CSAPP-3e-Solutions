@@ -1,1 +1,9 @@
 psim
+pipe-*.c
+*.o
+*.exe
+*~
+sdriver.ys
+sdriver.yo
+ldriver.ys
+ldriver.yo

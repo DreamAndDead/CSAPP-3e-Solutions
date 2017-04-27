@@ -62,10 +62,10 @@
                             | ###############################
 0x090:                      | 	.align 8
 0x090:                      | src:
-0x090: 0100000000000000     | 	.quad 1
+0x090: ffffffffffffffff     | 	.quad -1
 0x098: feffffffffffffff     | 	.quad -2
 0x0a0: 0300000000000000     | 	.quad 3
-0x0a8: fcffffffffffffff     | 	.quad -4
+0x0a8: 0400000000000000     | 	.quad 4
 0x0b0: fadebc0000000000     | 	.quad 0xbcdefa # This shouldn't get moved
                             | 
 0x0c0:                      | 	.align 16

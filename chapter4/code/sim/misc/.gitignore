@@ -1,4 +1,13 @@
+*.o
+*.yo
+*.exe
 yis
 yas
 hcl2c
-*.o
+mux4
+*~
+core.*
+hcl.tab.c
+hcl.tab.h
+lex.yy.c
+yas-grammar.c

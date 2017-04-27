@@ -68,3 +68,19 @@
     - [3.73](chapter3/3.73.md)
     - [3.74](chapter3/3.74.md)
     - [3.75](chapter3/3.75.md)
+
+* [4. Processor Architecture](chapter4/index.md)
+* [5. Optimizing Program Performance](chapter3/index.md)
+* [6. The Memory Hierarchy](chapter3/index.md)
+
+## Part 2 Running Programs on a System
+
+* [7. Linking](chapter3/index.md)
+* [8. Exceptional Control Flow](chapter3/index.md)
+* [9. Virtual Memory](chapter3/index.md)
+
+## Part 3 Interaction and Communication between Programs
+
+* [10. System-Level I/O](chapter3/index.md)
+* [11. Network Programming](chapter3/index.md)
+* [12. Concurrent Programming](chapter3/index.md)

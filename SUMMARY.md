@@ -70,6 +70,22 @@
     - [3.75](chapter3/3.75.md)
 
 * [4. Processor Architecture](chapter4/index.md)
+    - [4.45](chapter4/4.45.md)
+    - [4.46](chapter4/4.46.md)
+    - [4.47](chapter4/4.47.md)
+    - [4.48](chapter4/4.48.md)
+    - [4.49](chapter4/4.49.md)
+    - [4.50](chapter4/4.50.md)
+    - [4.51](chapter4/4.51.md)
+    - [4.52](chapter4/4.52.md)
+    - [4.53](chapter4/4.53.md)
+    - [4.54](chapter4/4.54.md)
+    - [4.55](chapter4/4.55.md)
+    - [4.56](chapter4/4.56.md)
+    - [4.57](chapter4/4.57.md)
+    - [4.58](chapter4/4.58.md)
+    - [4.59](chapter4/4.59.md)
+
 * [5. Optimizing Program Performance](chapter3/index.md)
 * [6. The Memory Hierarchy](chapter3/index.md)
 

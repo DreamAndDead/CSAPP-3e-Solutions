@@ -1,4 +1,4 @@
-# CSAPP-3rd-Solutions
+# CSAPP-3e-Solutions
 
 |Chapter|Status|
 |----|-----|

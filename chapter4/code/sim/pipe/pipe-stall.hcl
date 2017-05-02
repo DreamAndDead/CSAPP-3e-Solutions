@@ -1,4 +1,4 @@
-#/* $begin pipe-all-hcl */
+#/* $begin pipe-stall-hcl */
 ####################################################################
 #    HCL Description of Control for Pipelined Y86-64 Processor     #
 #    Copyright (C) Randal E. Bryant, David R. O'Hallaron, 2014     #
@@ -303,32 +303,147 @@ word Stat = [
 ];
 
 ################ Pipeline Register Control #########################
+# situation: ret
+# bool s_ret = IRET in { D_icode, E_icode, M_icode };
+#
+# situation: jxx error
+# bool s_jxx_error = (E_icode == IJXX && !e_Cnd);
+#
+# situation: data_hazard
+# bool s_data_hazard =
+#   (
+#     (
+#       d_srcA != RNONE  &&
+#       (
+#         d_srcA == e_dstE || d_srcA == E_dstM ||
+#         d_srcA == M_dstM || d_srcA == M_dstE ||
+#         d_srcA == W_dstM || d_srcA == W_dstE
+#       )
+#     ) ||
+#     (
+#       d_srcB != RNONE  &&
+#       (
+#         d_srcB == e_dstE || d_srcB == E_dstM ||
+#         d_srcB == M_dstM || d_srcB == M_dstE ||
+#         d_srcB == W_dstM || d_srcB == W_dstE
+#       )
+#     )
+#   )
 
 # Should I stall or inject a bubble into Pipeline Register F?
 # At most one of these can be true.
+# bool F_stall = (s_ret || s_data_hazard) && !s_jxx_error;
+bool F_stall = (
+    (IRET in { D_icode, E_icode, M_icode }) ||
+    (
+      (
+        d_srcA != RNONE  &&
+        (
+          d_srcA == e_dstE || d_srcA == E_dstM ||
+          d_srcA == M_dstM || d_srcA == M_dstE ||
+          d_srcA == W_dstM || d_srcA == W_dstE
+        )
+      ) ||
+      (
+        d_srcB != RNONE  &&
+        (
+          d_srcB == e_dstE || d_srcB == E_dstM ||
+          d_srcB == M_dstM || d_srcB == M_dstE ||
+          d_srcB == W_dstM || d_srcB == W_dstE
+        )
+      )
+    )
+  ) &&
+  !(E_icode == IJXX && !e_Cnd);
+
 bool F_bubble = 0;
-bool F_stall =
-	0 ||
-	# Stalling at fetch while ret passes through pipeline
-	IRET in { f_icode, D_icode, E_icode, M_icode, W_icode };
 
-# Should I stall or inject a bubble into Pipeline Register D?
-# At most one of these can be true.
-bool D_stall = 0;
-bool D_bubble = 0;
+# should i stall or inject a bubble into pipeline register d?
+# at most one of these can be true.
+# bool D_stall = s_data_hazard && !s_jxx_error;
+# bool D_bubble = s_jxx_error || (!s_data_hazard && s_ret)
+bool D_stall = (
+    (
+      d_srcA != RNONE  &&
+      (
+        d_srcA == e_dstE || d_srcA == E_dstM ||
+        d_srcA == M_dstM || d_srcA == M_dstE ||
+        d_srcA == W_dstM || d_srcA == W_dstE
+      )
+    ) ||
+    (
+      d_srcB != RNONE  &&
+      (
+        d_srcB == e_dstE || d_srcB == E_dstM ||
+        d_srcB == M_dstM || d_srcB == M_dstE ||
+        d_srcB == W_dstM || d_srcB == W_dstE
+      )
+    )
+  ) &&
+  !(E_icode == IJXX && !e_Cnd);
 
-# Should I stall or inject a bubble into Pipeline Register E?
-# At most one of these can be true.
+bool D_bubble =
+  (E_icode == IJXX && !e_Cnd) ||
+  (
+    !(
+      (
+        d_srcA != RNONE  &&
+        (
+          d_srcA == e_dstE || d_srcA == E_dstM ||
+          d_srcA == M_dstM || d_srcA == M_dstE ||
+          d_srcA == W_dstM || d_srcA == W_dstE
+        )
+      ) ||
+      (
+        d_srcB != RNONE  &&
+        (
+          d_srcB == e_dstE || d_srcB == E_dstM ||
+          d_srcB == M_dstM || d_srcB == M_dstE ||
+          d_srcB == W_dstM || d_srcB == W_dstE
+        )
+      )
+    ) &&
+    (IRET in { D_icode, E_icode, M_icode })
+  );
+
+# should i stall or inject a bubble into pipeline register e?
+# at most one of these can be true.
+# bool E_stall = 0;
+# bool E_bubble = s_jxx_error || s_data_hazard
 bool E_stall = 0;
-bool E_bubble = 0;
+bool E_bubble =
+  (E_icode == IJXX && !e_Cnd) ||
+  (
+    (
+      d_srcA != RNONE  &&
+      (
+        d_srcA == e_dstE || d_srcA == E_dstM ||
+        d_srcA == M_dstM || d_srcA == M_dstE ||
+        d_srcA == W_dstM || d_srcA == W_dstE
+      )
+    ) ||
+    (
+      d_srcB != RNONE  &&
+      (
+        d_srcB == e_dstE || d_srcB == E_dstM ||
+        d_srcB == M_dstM || d_srcB == M_dstE ||
+        d_srcB == W_dstM || d_srcB == W_dstE
+      )
+    )
+  );
 
+
+
+
+# keep same with pipe-std-hcl
+#
 # Should I stall or inject a bubble into Pipeline Register M?
 # At most one of these can be true.
 bool M_stall = 0;
 # Start injecting bubbles as soon as exception passes through memory stage
-bool M_bubble = 0;
+bool M_bubble = m_stat in { SADR, SINS, SHLT } || W_stat in { SADR, SINS, SHLT };
 
 # Should I stall or inject a bubble into Pipeline Register W?
-bool W_stall = 0;
+bool W_stall = W_stat in { SADR, SINS, SHLT };
 bool W_bubble = 0;
-#/* $end pipe-all-hcl */
+#/* $end pipe-stall-hcl */

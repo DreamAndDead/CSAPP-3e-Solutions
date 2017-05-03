@@ -13,6 +13,7 @@
 0x030: 0000000000000000     |   .quad 0x0000000000000000
                             | 
 0x038:                      | main:
+                            |   # test number 1, -1, 3, 5
 0x038: 30fa1800000000000000 |   irmovq array, %r10
                             | 
 0x042: 30f70100000000000000 |   irmovq $1,%rdi
@@ -33,39 +34,41 @@
 0x0b6: 90                   | 	ret
                             | 
 0x0b7:                      | table:
-0x0b7: b301000000000000     |   .quad LD
-0x0bf: 7701000000000000     |   .quad L0
-0x0c7: 8201000000000000     |   .quad L1
-0x0cf: 8b01000000000000     |   .quad L2
-0x0d7: 9401000000000000     |   .quad L3
-0x0df: 9f01000000000000     |   .quad L4
-0x0e7: a801000000000000     |   .quad L5
+0x0b7: b301000000000000     |   .quad LD  # default branch
+0x0bf: 7701000000000000     |   .quad L0  # idx == 0
+0x0c7: 8201000000000000     |   .quad L1  # idx == 1
+0x0cf: 8b01000000000000     |   .quad L2  # idx == 2
+0x0d7: 9401000000000000     |   .quad L3  # idx == 3
+0x0df: 9f01000000000000     |   .quad L4  # idx == 4
+0x0e7: a801000000000000     |   .quad L5  # idx == 5
                             | 
                             | # long switchv(long idx)
                             | # idx in %rdi
 0x0ef:                      | switchv:
+                            |   # contant number
 0x0ef: 30f80800000000000000 |   irmovq $8, %r8
 0x0f9: 30fa0000000000000000 |   irmovq $0, %r10
 0x103: 30fb0100000000000000 |   irmovq $1, %r11
+                            | 
 0x10d: 30f00000000000000000 |   irmovq $0, %rax
 0x117: 30f1b700000000000000 |   irmovq table, %rcx # table address
 0x121: 2072                 |   rrmovq %rdi, %rdx
 0x123: 6182                 |   subq %r8, %rdx
-0x125: 766001000000000000   |   jg def
+0x125: 766001000000000000   |   jg def 			 # idx > 5
 0x12e: 61a7                 |   subq %r10, %rdi
-0x130: 726001000000000000   |   jl def
-0x139:                      | mul:
+0x130: 726001000000000000   |   jl def 			 # idx < 0
+0x139:                      | mul: # calculate 8 * %rdi
 0x139: 61a7                 |   subq %r10, %rdi
 0x13b: 735101000000000000   |   je addr
 0x144: 6081                 |   addq %r8, %rcx
 0x146: 61b7                 |   subq %r11, %rdi
 0x148: 703901000000000000   |   jmp mul
-0x151:                      | addr:
+0x151:                      | addr: # jump using table address
 0x151: 6081                 |   addq %r8, %rcx
 0x153: 50710000000000000000 |   mrmovq (%rcx), %rdi
 0x15d: a07f                 |   pushq %rdi
 0x15f: 90                   |   ret
-0x160:                      | def:
+0x160:                      | def: # default branch
 0x160: 30f1b700000000000000 |   irmovq table, %rcx
 0x16a: 50710000000000000000 |   mrmovq (%rcx), %rdi
 0x174: a07f                 |   pushq %rdi

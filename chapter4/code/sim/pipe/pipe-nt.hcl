@@ -274,6 +274,7 @@ bool set_cc = E_icode == IOPQ &&
 	!m_stat in { SADR, SINS, SHLT } && !W_stat in { SADR, SINS, SHLT };
 
 ## Generate valA in execute stage
+## pass branch address back by M_valA
 word e_valA = [
 	E_icode == IJXX && E_ifun != UNCOND : E_valC;
 	1 : E_valA;    # Pass valA through stage

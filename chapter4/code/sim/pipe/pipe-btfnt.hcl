@@ -249,8 +249,8 @@ word d_valB = [
 # way to get valC into pipeline register M, so that
 # you can correct for a mispredicted branch.
 
-# pass valC by E_valE, pass valP by E_valA
-#
+## pass valC by M_valE, pass valP by M_valA
+
 ## Select input A to ALU
 word aluA = [
 	E_icode in { IRRMOVQ, IOPQ } : E_valA;

@@ -33,5 +33,7 @@ test4.48: cmove-3
 
 test4.49: cmove-1
 
+test: testA testB test4.48 test4.49
+
 # vim:ft=make
 #

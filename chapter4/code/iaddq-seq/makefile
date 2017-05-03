@@ -2,7 +2,7 @@
 # makefile
 #
 
-all: test
+all:
 
 test:
 	(cd ../sim/seq; make ssim VERSION=full)

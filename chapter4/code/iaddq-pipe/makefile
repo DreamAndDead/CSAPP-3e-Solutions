@@ -3,7 +3,7 @@
 #
 
 
-all: test
+all:
 
 test:
 	(cd ../sim/pipe; make clean; make psim VERSION=full)

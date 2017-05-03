@@ -271,7 +271,7 @@ bool set_cc = E_icode == IOPQ &&
 ##   from memory stage when appropriate
 ## Here it is set to the default used in the normal pipeline
 word e_valA = [
-  E_icode in { IRMMOVQ, IPUSHQ } && E_srcA == M_dstM : m_valM;
+	E_icode in { IRMMOVQ, IPUSHQ } && E_srcA == M_dstM : m_valM;
 	1 : E_valA;  # Use valA from stage pipe register
 ];
 
@@ -358,15 +358,15 @@ bool D_bubble =
 	(E_icode == IJXX && !e_Cnd) ||
 	# Stalling at fetch while ret passes through pipeline
 	# but not condition for a load/use hazard
-  !(
-    E_icode in { IMRMOVQ, IPOPQ } &&
-    (
-      E_dstM == d_srcB ||
-      (
-        E_dstM == d_srcA && !(D_icode in { IRMMOVQ, IPUSHQ })
-      )
-    )
-  ) &&
+	!(
+		E_icode in { IMRMOVQ, IPOPQ } &&
+		(
+		E_dstM == d_srcB ||
+		(
+			E_dstM == d_srcA && !(D_icode in { IRMMOVQ, IPUSHQ })
+			)
+		)
+	) &&
 	IRET in { D_icode, E_icode, M_icode };
 
 # Should I stall or inject a bubble into Pipeline Register E?
@@ -378,12 +378,12 @@ bool E_bubble =
 	# Conditions for a load/use hazard
 	## Set this to the new load/use condition
 	E_icode in { IMRMOVQ, IPOPQ } &&
-  (
-    E_dstM == d_srcB ||
-    (
-      E_dstM == d_srcA && !(D_icode in { IRMMOVQ, IPUSHQ })
-    )
-  );
+	(
+		E_dstM == d_srcB ||
+		(
+			E_dstM == d_srcA && !(D_icode in { IRMMOVQ, IPUSHQ })
+		)
+	);
 
 # Should I stall or inject a bubble into Pipeline Register M?
 # At most one of these can be true.

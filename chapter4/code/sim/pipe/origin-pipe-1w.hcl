@@ -197,7 +197,7 @@ word f_predPC = [
 
 ################ Decode Stage ######################################
 
-## W1: Strategy.  Decoding of popq rA should be treated the same
+## 1W: Strategy.  Decoding of popq rA should be treated the same
 ## as would iaddq $8, %rsp
 ## Decoding of pop2 rA treated same as mrmovq -8(%rsp), rA
 

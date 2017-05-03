@@ -184,7 +184,7 @@ bool need_valC =
 word f_predPC = [
 	# BNT: This is where you'll change the branch prediction rule
 	f_icode == IJXX && f_ifun != UNCOND : f_valP;
-  f_icode in { IJXX, ICALL } : f_valC;
+	f_icode in { IJXX, ICALL } : f_valC;
 	1 : f_valP;
 ];
 
@@ -241,6 +241,10 @@ word d_valB = [
 
 ################ Execute Stage #####################################
 
+# BNT: When some branches are predicted as not-taken, you need some
+# way to get valC into pipeline register M, so that
+# you can correct for a mispredicted branch.
+
 ## Select input A to ALU
 word aluA = [
 	E_icode in { IRRMOVQ, IOPQ } : E_valA;
@@ -269,14 +273,10 @@ bool set_cc = E_icode == IOPQ &&
 	# State changes only during normal operation
 	!m_stat in { SADR, SINS, SHLT } && !W_stat in { SADR, SINS, SHLT };
 
-# BNT: When some branches are predicted as not-taken, you need some
-# way to get valC into pipeline register M, so that
-# you can correct for a mispredicted branch.
-
 ## Generate valA in execute stage
 word e_valA = [
 	E_icode == IJXX && E_ifun != UNCOND : E_valC;
-  1 : E_valA;    # Pass valA through stage
+	1 : E_valA;    # Pass valA through stage
 ];
 
 ## Set dstE to RNONE in event of not-taken conditional move

@@ -157,7 +157,7 @@ word f_pc = [
 ## so that it will be IPOP2 when fetched for second time.
 word f_icode = [
 	imem_error : INOP;
-  D_icode == IPOPQ : IPOP2;
+	D_icode == IPOPQ : IPOP2;
 	1: imem_icode;
 ];
 
@@ -193,7 +193,7 @@ bool need_valC =
 word f_predPC = [
 	f_icode in { IJXX, ICALL } : f_valC;
 	## 1W: Want to refetch popq one time
-  f_icode == IPOPQ : f_pc;
+	f_icode == IPOPQ : f_pc;
 	1 : f_valP;
 ];
 

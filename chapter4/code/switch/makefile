@@ -1,7 +1,6 @@
 #
 # makefile
 #
-#
 YAS = ../sim/misc/yas
 YIS = ../sim/misc/yis
 SEQ_DIR = ../sim/seq/

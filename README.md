@@ -35,4 +35,4 @@ test
 If you encounter some problem, you can [email me][gmail] or comment on disqus
 in specific solution page:)
 
-[gmail]: mailto://aquairain@gmail.com
+[gmail]: mailto:aquairain@gmail.com

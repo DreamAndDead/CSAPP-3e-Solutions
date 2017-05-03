@@ -2,10 +2,20 @@
 
 ## yas simulation
 
+this chapter focus on processor architecture and design a little simple
+processor and yas assemble language designed running on it. we can access the
+processor simulation code and simulation manual from csapp official site.
+
+[download simulation code][code]
+
+[download manual][manual]
+
+I have store the simulation code in chapter4/code/sim directory. you should read
+the manual and README in code to know how it works and how to test yas code.
+
 ## test
 
 type:
-
 - output: watch output to see if it's same with imaganation
 - yas: run sim script to see if "processor" works fine
 

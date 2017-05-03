@@ -3,6 +3,9 @@
 #
 
 all:
+	(cd ../sim/pipe; \
+	  diff -u origin-pipe-stall.hcl pipe-stall.hcl > pipe-stall.diff; \
+	  echo 'generate pipe-stall.diff')
 
 test:
 	(cd ../sim/pipe; make clean; make psim VERSION=stall)

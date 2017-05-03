@@ -314,19 +314,11 @@ word Stat = [
 #   (
 #     (
 #       d_srcA != RNONE  &&
-#       (
-#         d_srcA == e_dstE || d_srcA == E_dstM ||
-#         d_srcA == M_dstM || d_srcA == M_dstE ||
-#         d_srcA == W_dstM || d_srcA == W_dstE
-#       )
+#       d_srcA in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
 #     ) ||
 #     (
 #       d_srcB != RNONE  &&
-#       (
-#         d_srcB == e_dstE || d_srcB == E_dstM ||
-#         d_srcB == M_dstM || d_srcB == M_dstE ||
-#         d_srcB == W_dstM || d_srcB == W_dstE
-#       )
+#       d_srcB in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
 #     )
 #   )
 
@@ -338,19 +330,11 @@ bool F_stall = (
     (
       (
         d_srcA != RNONE  &&
-        (
-          d_srcA == e_dstE || d_srcA == E_dstM ||
-          d_srcA == M_dstM || d_srcA == M_dstE ||
-          d_srcA == W_dstM || d_srcA == W_dstE
-        )
+        d_srcA in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
       ) ||
       (
         d_srcB != RNONE  &&
-        (
-          d_srcB == e_dstE || d_srcB == E_dstM ||
-          d_srcB == M_dstM || d_srcB == M_dstE ||
-          d_srcB == W_dstM || d_srcB == W_dstE
-        )
+        d_srcB in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
       )
     )
   ) &&
@@ -365,19 +349,11 @@ bool F_bubble = 0;
 bool D_stall = (
     (
       d_srcA != RNONE  &&
-      (
-        d_srcA == e_dstE || d_srcA == E_dstM ||
-        d_srcA == M_dstM || d_srcA == M_dstE ||
-        d_srcA == W_dstM || d_srcA == W_dstE
-      )
+      d_srcA in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
     ) ||
     (
       d_srcB != RNONE  &&
-      (
-        d_srcB == e_dstE || d_srcB == E_dstM ||
-        d_srcB == M_dstM || d_srcB == M_dstE ||
-        d_srcB == W_dstM || d_srcB == W_dstE
-      )
+      d_srcB in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
     )
   ) &&
   !(E_icode == IJXX && !e_Cnd);
@@ -388,19 +364,11 @@ bool D_bubble =
     !(
       (
         d_srcA != RNONE  &&
-        (
-          d_srcA == e_dstE || d_srcA == E_dstM ||
-          d_srcA == M_dstM || d_srcA == M_dstE ||
-          d_srcA == W_dstM || d_srcA == W_dstE
-        )
+        d_srcA in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
       ) ||
       (
         d_srcB != RNONE  &&
-        (
-          d_srcB == e_dstE || d_srcB == E_dstM ||
-          d_srcB == M_dstM || d_srcB == M_dstE ||
-          d_srcB == W_dstM || d_srcB == W_dstE
-        )
+        d_srcB in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
       )
     ) &&
     (IRET in { D_icode, E_icode, M_icode })
@@ -416,19 +384,11 @@ bool E_bubble =
   (
     (
       d_srcA != RNONE  &&
-      (
-        d_srcA == e_dstE || d_srcA == E_dstM ||
-        d_srcA == M_dstM || d_srcA == M_dstE ||
-        d_srcA == W_dstM || d_srcA == W_dstE
-      )
+      d_srcA in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
     ) ||
     (
       d_srcB != RNONE  &&
-      (
-        d_srcB == e_dstE || d_srcB == E_dstM ||
-        d_srcB == M_dstM || d_srcB == M_dstE ||
-        d_srcB == W_dstM || d_srcB == W_dstE
-      )
+      d_srcB in { e_dstE, E_dstM, M_dstM, M_dstE, W_dstM, W_dstE }
     )
   );
 

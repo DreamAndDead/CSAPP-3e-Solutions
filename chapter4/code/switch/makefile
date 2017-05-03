@@ -6,7 +6,9 @@ YIS = ../sim/misc/yis
 SEQ_DIR = ../sim/seq/
 YO_FILE = ../../switch/switch.yo
 
-all:
+all: compile
+
+compile:
 	gcc switch.c -o main
 
 test:

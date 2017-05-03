@@ -3,6 +3,9 @@
 #
 
 all:
+	(cd ../sim/seq; \
+	  diff -u origin-seq-full.hcl seq-full.hcl > seq-full.diff; \
+	  echo 'generate seq-full.diff')
 
 test:
 	(cd ../sim/seq; make ssim VERSION=full)

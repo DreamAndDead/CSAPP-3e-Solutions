@@ -87,13 +87,13 @@
     - [4.59](chapter4/4.59.md)
 
 * [5. Optimizing Program Performance](chapter3/index.md)
-    - [5.13][chapter5/5.13.md]
-    - [5.14][chapter5/5.14.md]
-    - [5.15][chapter5/5.15.md]
-    - [5.16][chapter5/5.16.md]
-    - [5.17][chapter5/5.17.md]
-    - [5.18][chapter5/5.18.md]
-    - [5.19][chapter5/5.19.md]
+    - [5.13](chapter5/5.13.md)
+    - [5.14](chapter5/5.14.md)
+    - [5.15](chapter5/5.15.md)
+    - [5.16](chapter5/5.16.md)
+    - [5.17](chapter5/5.17.md)
+    - [5.18](chapter5/5.18.md)
+    - [5.19](chapter5/5.19.md)
 
 * [6. The Memory Hierarchy](chapter3/index.md)
 

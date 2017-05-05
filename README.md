@@ -10,7 +10,7 @@ Computer Systems: A Programmer's Perspective Third Edition Solutions
 |2|finished|
 |3|finished|
 |4|finished|
-|5|update to 5.16|
+|5|finished|
 |6-12|todo|
 
 ## code

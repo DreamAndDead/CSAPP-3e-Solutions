@@ -5,53 +5,61 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "./lib/vec.h"
 
-#define LEN 24
+#define SPACE (size_t)125
 
-/* inner product. accumulate in temporary */
-void inner4(vec_ptr u, vec_ptr v, data_t *dest) {
-  long i;
-  long length = vec_length(u);
-  data_t *udata = get_vec_start(u);
-  data_t *vdata = get_vec_start(v);
-  data_t sum = (data_t) 0;
-
-  for (i = 0; i < length-6; i+=6) {
-    sum = sum +
-      (
-        udata[i] * vdata[i] +
-        udata[i+1] * vdata[i+1] +
-        udata[i+2] * vdata[i+2] +
-        udata[i+3] * vdata[i+3] +
-        udata[i+4] * vdata[i+4] +
-        udata[i+5] * vdata[i+5]
-      );
+void* basic_memset(void *s, int c, size_t n) {
+  size_t cnt = 0;
+  unsigned char *schar = s;
+  while (cnt < n) {
+    *schar++ = (unsigned char) c;
+    cnt++;
   }
-  for(; i < length; i++) {
-    sum = sum + udata[i] * vdata[i];
-  }
-  *dest = sum;
+  return s;
 }
 
+/*
+ * K = sizeof(unsigned long)
+ * cs store K chars for memset
+ */
+void* effective_memset(void *s, unsigned long cs, size_t n) {
+  /* align to K */
+  size_t K = sizeof(unsigned long);
+  size_t cnt = 0;
+  unsigned char *schar = s;
+  while (cnt < n) {
+    if ((size_t)schar % K == 0) {
+      break;
+    }
+    *schar++ = (unsigned char)cs;
+    cnt++;
+  }
+  /* store K chars one time */
+  unsigned long *slong = (unsigned long *)schar;
+  /* not cnt < n-K */
+  for (; cnt + K < n; cnt += K) {
+    *slong++ = cs;
+  }
+  /* store the rest */
+  schar = (unsigned char *)slong;
+  for (; cnt < n; cnt++) {
+    *schar++ = (unsigned char)cs;
+  }
+  return s;
+}
+
+
 int main(int argc, char* argv[]) {
-  vec_ptr u = new_vec(LEN);
-  vec_ptr v = new_vec(LEN);
+  void* basic_space = malloc(SPACE);
+  void* effective_space = malloc(SPACE);
 
-  data_t *arr = (data_t*) malloc(sizeof(data_t) * LEN);
-  memset(arr, 0, sizeof(data_t) * LEN);
-  arr[0] = 0;
-  arr[11] = 1;
-  arr[2] = 2;
-  arr[23] = 3;
+  int basic_fill = 0xFF;
+  unsigned long effective_fill = ~0;
 
-  set_vec_start(u, arr);
-  set_vec_start(v, arr);
+  basic_memset(basic_space, basic_fill, SPACE);
+  effective_memset(effective_space, effective_fill, SPACE);
 
-  data_t res;
-  inner4(u, v, &res);
-
-  assert(res == 1+4+9);
+  assert(memcmp(basic_space, effective_space, SPACE) == 0);
   return 0;
 }
 

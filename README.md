@@ -11,7 +11,7 @@ Computer Systems: A Programmer's Perspective Third Edition Solutions
 |3|finished|
 |4|finished|
 |5|finished|
-|6|todo: 34, 35, 36, 37|
+|6|finished|
 |7-12|todo|
 
 ## code

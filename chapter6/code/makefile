@@ -1,6 +1,5 @@
 #
 # makefile
-# zdw, 2017-05-09 10:45
 #
 
 all: compile

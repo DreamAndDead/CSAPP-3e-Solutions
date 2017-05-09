@@ -22,11 +22,11 @@ void effective_convert(int* src, int N) {
   int i, j, a, b, tmp;
 
   for (i = 0; i <= N-BLOCK; i+=BLOCK)
-    /* not j = 0 here */
+    /* brilliant! not j = 0 here */
     for (j = i; j <= N-BLOCK; j+=BLOCK)
       for (a = i; a < i+BLOCK; a++)
         for (b = j; b < j+BLOCK; b++) {
-          /* store two value in one loop */
+          /* brilliant! store two value in one loop */
           tmp = src[b*N+a] || src[a*N+b];
           src[b*N+a] = tmp;
           src[a*N+b] = tmp;

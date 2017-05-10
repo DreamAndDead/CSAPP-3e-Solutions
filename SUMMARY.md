@@ -125,6 +125,15 @@
 ## Part 2 Running Programs on a System
 
 * [7. Linking](chapter3/index.md)
+    - [7.6](chapter7/7.6.md)
+    - [7.7](chapter7/7.7.md)
+    - [7.8](chapter7/7.8.md)
+    - [7.9](chapter7/7.9.md)
+    - [7.10](chapter7/7.10.md)
+    - [7.11](chapter7/7.11.md)
+    - [7.12](chapter7/7.12.md)
+    - [7.13](chapter7/7.13.md)
+
 * [8. Exceptional Control Flow](chapter3/index.md)
 * [9. Virtual Memory](chapter3/index.md)
 

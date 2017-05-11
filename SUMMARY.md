@@ -135,6 +135,25 @@
     - [7.13](chapter7/7.13.md)
 
 * [8. Exceptional Control Flow](chapter3/index.md)
+    - [8.9](chapter8/8.9.md)
+    - [8.10](chapter8/8.10.md)
+    - [8.11](chapter8/8.11.md)
+    - [8.12](chapter8/8.12.md)
+    - [8.13](chapter8/8.13.md)
+    - [8.14](chapter8/8.14.md)
+    - [8.15](chapter8/8.15.md)
+    - [8.16](chapter8/8.16.md)
+    - [8.17](chapter8/8.17.md)
+    - [8.18](chapter8/8.18.md)
+    - [8.19](chapter8/8.19.md)
+    - [8.20](chapter8/8.20.md)
+    - [8.21](chapter8/8.21.md)
+    - [8.22](chapter8/8.22.md)
+    - [8.23](chapter8/8.23.md)
+    - [8.24](chapter8/8.24.md)
+    - [8.25](chapter8/8.25.md)
+    - [8.26](chapter8/8.26.md)
+
 * [9. Virtual Memory](chapter3/index.md)
 
 ## Part 3 Interaction and Communication between Programs

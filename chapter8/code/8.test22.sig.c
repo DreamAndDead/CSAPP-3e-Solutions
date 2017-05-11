@@ -1,13 +1,10 @@
 /*
- * %FFILE%
+ * 8.test22.sig.c
  */
-#include <stdio.h>
 #include "csapp.h"
 
-%HERE%
-
 int main(int argc, char* argv[]) {
-  return 0;
+  while (1);
 }
 
 

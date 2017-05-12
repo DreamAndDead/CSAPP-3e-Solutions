@@ -35,12 +35,13 @@ volatile sig_atomic_t fg_pid;
 
 void sigchild_handler(int sig) {
   int old_errno = errno;
+  int status;
   pid_t pid;
 
   sigset_t mask_all, prev_all;
   Sigfillset(&mask_all);
 
-  while ((pid = waitpid(-1, NULL, 0)) > 0) {
+  while ((pid = waitpid(-1, &status, 0)) > 0) {
     if (pid == fg_pid) {
       fg_pid = 0;
     }
@@ -57,6 +58,16 @@ void sigchild_handler(int sig) {
 
 void sigint_handler(int sig) {
 
+}
+
+void sigstop_handler(int sig) {
+  /* when fg_pid = 0, stop shell itself, it'll be a dead loop */
+  if (fg_pid == 0) {
+    Signal(SIGTSTP, SIG_DFL);
+    Kill(getpid(), SIGTSTP);
+  } else {
+    Kill(fg_pid, SIGTSTP);
+  }
 }
 
 int find_spare_jid() {
@@ -105,7 +116,7 @@ void list_jobs() {
     Job j = job_pool_ptr->jobs[i];
     if (j.using) {
       printf("[%d] %d %s \t %s", j.jid, j.pid,
-        j.status == Running ? "Running" : "Stopped", j.cmdline);
+          j.status == Running ? "Running" : "Stopped", j.cmdline);
     }
   }
 }
@@ -126,6 +137,9 @@ int main()
   }
   if (Signal(SIGINT, sigint_handler) == SIG_ERR) {
     unix_error("set signal int error");
+  }
+  if (Signal(SIGTSTP, sigstop_handler) == SIG_ERR) {
+    unix_error("set signal stop error");
   }
 
   char cmdline[MAXLINE]; /* Command line */

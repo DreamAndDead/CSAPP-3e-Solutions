@@ -5,7 +5,7 @@
 #include "csapp.h"
 
 int main(int argc, char* argv[]) {
-  Sleep(4);
+  Sleep(2);
   return 0;
 }
 

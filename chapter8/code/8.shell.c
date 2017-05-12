@@ -11,13 +11,15 @@ void del_job_by_pid(pid_t pid);
 
 #define MAXJOBS 128
 
+enum JobStatus { Running, Stopped };
+
 typedef int Jid;
 
 typedef struct {
   Jid jid;
   pid_t pid;
-  pid_t gid;
-  char** argv;
+  enum JobStatus status;
+  char cmdline[MAXLINE];
   int using;
 } Job, *JobPtr; /* single job */
 
@@ -33,17 +35,21 @@ volatile sig_atomic_t fg_pid;
 
 void sigchild_handler(int sig) {
   int old_errno = errno;
-
   pid_t pid;
+
+  sigset_t mask_all, prev_all;
+  Sigfillset(&mask_all);
+
   while ((pid = waitpid(-1, NULL, 0)) > 0) {
     if (pid == fg_pid) {
       fg_pid = 0;
-      printf("fg process terminate\n");
     }
     else {
-      printf("pid %d terminate normally\n", pid);
+      Sio_puts("pid "); Sio_putl(pid); Sio_puts(" terminate normally\n");
     }
-    /*del_job_by_pid(pid);*/
+    Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
+    del_job_by_pid(pid);
+    Sigprocmask(SIG_SETMASK, &prev_all, NULL);
   }
 
   errno = old_errno;
@@ -64,17 +70,17 @@ int find_spare_jid() {
   return jid;
 }
 
-int new_job(pid_t pid, char* argv[], int fg) {
+int new_job(pid_t pid, char* cmdline, int fg) {
   // find a jid
   Jid jid = find_spare_jid();
   if (jid == -1)
     unix_error("no more jid to use");
 
   // save process info
+  job_pool_ptr->jobs[jid].jid = jid;
   job_pool_ptr->jobs[jid].pid = pid;
-  // FIXME: tmp here
-  job_pool_ptr->jobs[jid].gid = pid;
-  job_pool_ptr->jobs[jid].argv = argv;
+  job_pool_ptr->jobs[jid].status = Running;
+  strcpy(job_pool_ptr->jobs[jid].cmdline, cmdline);
   job_pool_ptr->jobs[jid].using = 1;
   if (fg)
     job_pool_ptr->fg_jid = jid;
@@ -90,6 +96,16 @@ void del_job_by_pid(pid_t pid) {
       job_pool_ptr->jobs[i].using = 0;
       if (i == job_pool_ptr->fg_jid)
         job_pool_ptr->fg_jid = -1;
+    }
+  }
+}
+
+void list_jobs() {
+  for (int i = 0; i < MAXJOBS; i++) {
+    Job j = job_pool_ptr->jobs[i];
+    if (j.using) {
+      printf("[%d] %d %s \t %s", j.jid, j.pid,
+        j.status == Running ? "Running" : "Stopped", j.cmdline);
     }
   }
 }
@@ -142,32 +158,39 @@ void eval(char *cmdline)
     return;   /* Ignore empty lines */
 
   if (!builtin_command(argv)) {
-    sigset_t mask, prev;
-    Sigemptyset(&mask);
-    Sigaddset(&mask, SIGCHLD);
+    sigset_t mask_one, prev_one;
+    Sigemptyset(&mask_one);
+    Sigaddset(&mask_one, SIGCHLD);
 
     /* block signal child */
-    Sigprocmask(SIG_BLOCK, &mask, &prev);
+    Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);
     if ((pid = Fork()) == 0) {
+      /* unblock in child process */
+      Sigprocmask(SIG_SETMASK, &prev_one, NULL);
+      Setpgid(0, 0);
       if (execve(argv[0], argv, environ) < 0) {
         printf("%s: Command not found.\n", argv[0]);
         exit(0);
       }
     }
 
+    sigset_t mask_all, prev_all;
+    Sigfillset(&mask_all);
     // save job info
-    Jid new_jid = new_job(pid, argv, !bg);
+    Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
+    Jid new_jid = new_job(pid, cmdline, !bg);
+    Sigprocmask(SIG_SETMASK, &prev_all, NULL);
 
     if (!bg) {
       fg_pid = pid;
       while(fg_pid)
-        sigsuspend(&prev);
+        sigsuspend(&prev_one);
     }
     else
-      printf("[%d] %d %s", new_jid, pid, cmdline);
+      printf("[%d] %d %s \t %s", new_jid, pid, "Running", cmdline);
 
     /* unblock child signal */
-    Sigprocmask(SIG_SETMASK, &prev, NULL);
+    Sigprocmask(SIG_SETMASK, &prev_one, NULL);
   }
   return;
 }
@@ -179,6 +202,11 @@ int builtin_command(char **argv)
     exit(0);
   if (!strcmp(argv[0], "&"))    /* Ignore singleton & */
     return 1;
+  if (!strcmp(argv[0], "jobs")) {
+    list_jobs();
+    return 1;
+  }
+
   return 0;                     /* Not a builtin command */
 }
 /* $end eval */

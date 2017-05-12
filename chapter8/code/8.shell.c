@@ -41,16 +41,28 @@ void sigchild_handler(int sig) {
   sigset_t mask_all, prev_all;
   Sigfillset(&mask_all);
 
-  while ((pid = waitpid(-1, &status, 0)) > 0) {
-    if (pid == fg_pid) {
-      fg_pid = 0;
+  while ((pid = waitpid(-1, &status, WNOHANG | WUNTRACED)) > 0) {
+    /* exit or be stopped */
+
+    /* exit normally */
+    if (WIFEXITED(status)) {
+      if (pid == fg_pid) {
+        fg_pid = 0;
+      } else {
+        Sio_puts("pid "); Sio_putl(pid); Sio_puts(" terminate normally\n");
+      }
+      Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
+      del_job_by_pid(pid);
+      Sigprocmask(SIG_SETMASK, &prev_all, NULL);
     }
-    else {
-      Sio_puts("pid "); Sio_putl(pid); Sio_puts(" terminate normally\n");
+
+    /* be stopped */
+    if (WIFSTOPPED(status)) {
+      if (pid == fg_pid) {
+        fg_pid = 0;
+      }
+      Sio_puts("pid "); Sio_putl(pid); Sio_puts(" be stopped\n");
     }
-    Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
-    del_job_by_pid(pid);
-    Sigprocmask(SIG_SETMASK, &prev_all, NULL);
   }
 
   errno = old_errno;
@@ -127,8 +139,7 @@ void initjobs() {
 }
 
 
-int main()
-{
+int main() {
   initjobs();
 
   /* signal handlers */
@@ -155,9 +166,7 @@ int main()
     eval(cmdline);
   }
 }
-/* $end shellmain */
 
-/* $begin eval */
 /* eval - Evaluate a command line */
 void eval(char *cmdline)
 {

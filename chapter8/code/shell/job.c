@@ -21,11 +21,11 @@ void sigchild_handler(int sig) {
   /* exit or be stopped or continue */
   while ((pid = waitpid(-1, &status, WNOHANG|WUNTRACED|WCONTINUED)) > 0) {
     /* exit normally */
-    if (WIFEXITED(status)) {
+    if (WIFEXITED(status) || WIFSIGNALED(status)) {
       if (pid == fg_pid) {
         fg_pid = 0;
       } else {
-        Sio_puts("pid "); Sio_putl(pid); Sio_puts(" terminate normally\n");
+        Sio_puts("pid "); Sio_putl(pid); Sio_puts(" terminates\n");
       }
       Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
       del_job_by_pid(pid);
@@ -63,7 +63,13 @@ void sigchild_handler(int sig) {
 }
 
 void sigint_handler(int sig) {
-
+  /* when fg_pid = 0, stop shell itself, it'll be a dead loop */
+  if (fg_pid == 0) {
+    Signal(SIGINT, SIG_DFL);
+    Kill(getpid(), SIGINT);
+  } else {
+    Kill(fg_pid, SIGINT);
+  }
 }
 
 void sigstop_handler(int sig) {

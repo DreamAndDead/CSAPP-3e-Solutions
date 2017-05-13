@@ -37,3 +37,7 @@ void init_jobs();
 JobPtr find_job_by_pid(pid_t pid);
 JobPtr find_job_by_jid(Jid jid);
 void set_job_status(JobPtr jp, enum JobStatus status);
+
+
+
+void test_job(void);

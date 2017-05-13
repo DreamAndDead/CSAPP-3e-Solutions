@@ -2,6 +2,7 @@
  * job.c
  */
 #include <stdio.h>
+#include <assert.h>
 #include "job.h"
 #include "../csapp.h"
 
@@ -48,6 +49,11 @@ void sigchild_handler(int sig) {
     /* continue */
     if(WIFCONTINUED(status)) {
       fg_pid = pid;
+      // set pid status running
+      Sigprocmask(SIG_BLOCK, &mask_all, &prev_all);
+      JobPtr jp = find_job_by_pid(pid);
+      set_job_status(jp, Running);
+      Sigprocmask(SIG_SETMASK, &prev_all, NULL);
 
       Sio_puts("pid "); Sio_putl(pid); Sio_puts(" continue\n");
     }
@@ -145,4 +151,8 @@ void print_jobs() {
 void init_jobs() {
   jobs_p->fg_jid = -1;
   memset(jobs_p->jobs, 0, sizeof(jobs_p->jobs));
+}
+
+void test_job() {
+
 }

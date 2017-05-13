@@ -7,6 +7,9 @@
 #include "job.h"
 
 int main() {
+  test_shell();
+  test_job();
+
   init_jobs();
 
   /* set signal handlers */
@@ -29,5 +32,4 @@ int main() {
     eval(cmdline);
   }
 }
-
 

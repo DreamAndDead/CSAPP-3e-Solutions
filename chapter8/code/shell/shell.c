@@ -1,3 +1,4 @@
+#include <assert.h>
 #include "../csapp.h"
 #include "shell.h"
 #include "job.h"
@@ -70,39 +71,48 @@ int builtin_command(char **argv)
   }
   // fg command
   if (!strcmp(argv[0], "fg")) {
-    char* id = argv[1];
+    int id;
+    // right format: fg %ddd or fg ddd
+    if ((id = parse_id(argv[1])) != -1 && argv[2] == NULL) {
+      sigset_t mask_one, prev_one;
+      Sigemptyset(&mask_one);
+      Sigaddset(&mask_one, SIGCHLD);
+      Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);
 
-    if (id == NULL) {
-      printf("fg need params\n");
-      return 1;
-    }
-    if (id[0] == '%' && id[1] == '\0') {
-      printf("fg %% , no jid here");
-      return 1;
-    }
+      pid_t pid = id;
+      // if %, get pid from jid
+      if (argv[1][0] == '%') {
+        JobPtr jp = find_job_by_jid(id);
+        pid = jp->pid;
+      }
+      Kill(pid, SIGCONT);
+      fg_pid = pid;
+      while(fg_pid)
+        sigsuspend(&prev_one);
 
-    sigset_t mask_one, prev_one;
-    Sigemptyset(&mask_one);
-    Sigaddset(&mask_one, SIGCHLD);
-    Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);
+      Sigprocmask(SIG_SETMASK, &prev_one, NULL);
 
-    if (id[0] == '%') {
-      // CONT by jid
-      Jid j = atoi(id+1);
-      JobPtr jp = find_job_by_jid(j);
-      Kill(jp->pid, SIGCONT);
-      fg_pid = jp->pid;
     } else {
-      // CONT by pid
-      pid_t p = atoi(id);
-      Kill(p, SIGCONT);
-      fg_pid = p;
+      printf("format error, e.g. fg %%12 || bg 1498\n");
     }
-    while(fg_pid)
-      sigsuspend(&prev_one);
 
-    Sigprocmask(SIG_SETMASK, &prev_one, NULL);
-
+    return 1;
+  }
+  // bg command
+  if (!strcmp(argv[0], "bg")) {
+    int id;
+    // right format: bg %ddd or bg ddd
+    if ((id = parse_id(argv[1])) != -1 && argv[2] == NULL) {
+      pid_t pid = id;
+      // if %, get pid from jid
+      if (argv[1][0] == '%') {
+        JobPtr jp = find_job_by_jid(id);
+        pid = jp->pid;
+      }
+      Kill(pid, SIGCONT);
+    } else {
+      printf("format error, e.g. bg %%12  or  bg 1498\n");
+    }
     return 1;
   }
 
@@ -141,4 +151,42 @@ int parse_line(char *buf, char **argv)
   return bg;
 }
 
+static int is_number_str(char* s) {
+  int len = strlen(s);
+  for (int i = 0; i < len; i++)
+    if (!isdigit(s[i]))
+      return 0;
+
+  return 1;
+}
+
+int parse_id(char* s) {
+  int error = -1;
+  if (s == NULL)
+    return error;
+
+  /* format: %ddddd */
+  if (s[0] == '%') {
+    if (!is_number_str(s+1))
+      return error;
+
+    return atoi(s+1);
+  }
+  /* format: dddddd */
+  if (is_number_str(s))
+    return atoi(s);
+
+  /* not right */
+  return error;
+}
+
+void test_shell() {
+  // parse id
+  assert(-1 == parse_id("ns"));
+  assert(-1 == parse_id("%%"));
+  assert(0 == parse_id("%0"));
+  assert(0 == parse_id("0"));
+  assert(98 == parse_id("%98"));
+  assert(98 == parse_id("98"));
+}
 

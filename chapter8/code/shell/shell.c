@@ -70,7 +70,7 @@ int builtin_command(char **argv)
     print_jobs();
     return 1;
   }
-  // fg command
+  // > fg
   if (!strcmp(argv[0], "fg")) {
     int id;
     // right format: fg %ddd or fg ddd
@@ -81,7 +81,7 @@ int builtin_command(char **argv)
       Sigprocmask(SIG_BLOCK, &mask_one, &prev_one);
 
       pid_t pid = id;
-      // if %, get pid from jid
+      // if param is jid
       if (argv[1][0] == '%') {
         JobPtr jp = find_job_by_jid(id);
         pid = jp->pid;
@@ -99,13 +99,13 @@ int builtin_command(char **argv)
 
     return 1;
   }
-  // bg command
+  // > bg
   if (!strcmp(argv[0], "bg")) {
     int id;
     // right format: bg %ddd or bg ddd
     if ((id = parse_id(argv[1])) != -1 && argv[2] == NULL) {
       pid_t pid = id;
-      // if %, get pid from jid
+      // jid param
       if (argv[1][0] == '%') {
         JobPtr jp = find_job_by_jid(id);
         pid = jp->pid;

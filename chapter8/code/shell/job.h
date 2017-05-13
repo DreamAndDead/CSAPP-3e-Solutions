@@ -30,12 +30,6 @@ pid_t get_fg_pid();
 // set fg pid
 void set_fg_pid(pid_t pid);
 
-
-/* signal handler for CHILD, INT, STOP, core of whole shell program */
-void sigchild_handler(int sig);
-void sigint_handler(int sig);
-void sigstop_handler(int sig);
-
 void init_jobs();
 void print_jobs();
 
@@ -47,3 +41,10 @@ JobPtr find_job_by_jid(Jid jid);
 void set_job_status(JobPtr jp, enum JobStatus status);
 
 void test_job(void);
+
+
+/* signal handler for CHILD, INT, STOP, core of whole shell program */
+void sigchild_handler(int sig);
+void sigint_handler(int sig);
+void sigstop_handler(int sig);
+

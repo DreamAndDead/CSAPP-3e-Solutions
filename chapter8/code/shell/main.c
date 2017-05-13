@@ -7,6 +7,7 @@
 #include "job.h"
 
 int main() {
+  // some test for furture
   test_shell();
   test_job();
 
@@ -19,8 +20,6 @@ int main() {
     unix_error("signal int handler error");
   if (Signal(SIGTSTP, sigstop_handler) == SIG_ERR)
     unix_error("signal stop handler error");
-
-  printf("main process pid: %d\n", getpid());
 
   char cmdline[MAXLINE];
   while (1) {

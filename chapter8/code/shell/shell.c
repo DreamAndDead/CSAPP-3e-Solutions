@@ -25,9 +25,10 @@ void eval(char *cmdline)
     if ((pid = Fork()) == 0) {
       /* unblock in child process */
       Sigprocmask(SIG_SETMASK, &prev_one, NULL);
-      printf("child process pid: %d\n", getpid());
 
+      /* set gid same like pid */
       Setpgid(0, 0);
+
       if (execve(argv[0], argv, environ) < 0) {
         printf("%s: Command not found.\n", argv[0]);
         exit(0);
@@ -42,12 +43,12 @@ void eval(char *cmdline)
     Sigprocmask(SIG_SETMASK, &prev_all, NULL);
 
     if (!bg) {
-      fg_pid = pid;
-      while(fg_pid)
+      set_fg_pid(pid);
+      while(get_fg_pid())
         sigsuspend(&prev_one);
     }
     else
-      printf("[%d] %d %s \t %s", new_jid, pid, "Running", cmdline);
+      printf("[%d] %d %s \t %s\n", new_jid, pid, "Running", cmdline);
 
     /* unblock child signal */
     Sigprocmask(SIG_SETMASK, &prev_one, NULL);
@@ -86,14 +87,14 @@ int builtin_command(char **argv)
         pid = jp->pid;
       }
       Kill(pid, SIGCONT);
-      fg_pid = pid;
-      while(fg_pid)
+      set_fg_pid(pid);
+      while(get_fg_pid())
         sigsuspend(&prev_one);
 
       Sigprocmask(SIG_SETMASK, &prev_one, NULL);
 
     } else {
-      printf("format error, e.g. fg %%12 || bg 1498\n");
+      printf("format error, e.g. fg %%12 || fg 1498\n");
     }
 
     return 1;

@@ -2,7 +2,7 @@
  * 8.loop.c
  */
 #include <stdio.h>
-#include "csapp.h"
+#include "../csapp.h"
 
 int main(int argc, char* argv[]) {
   while (1) {

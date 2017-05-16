@@ -1,0 +1,60 @@
+--- mm.c	2017-05-16 17:52:31.798114732 +0800
++++ mm.9.17.c	2017-05-16 17:52:31.734116732 +0800
+@@ -41,6 +41,7 @@
+ 
+ /* Global variables */
+ static char *heap_listp = 0;  /* Pointer to first block */
++static char *rover;           /* Next fit rover */
+ 
+ /* Function prototypes for internal helper routines */
+ static void *extend_heap(size_t words);
+@@ -69,6 +70,7 @@
+   heap_listp += (2*WSIZE);                     //line:vm:mm:endinit
+   /* $end mminit */
+ 
++  rover = heap_listp;
+   /* $begin mminit */
+ 
+   /* Extend the empty heap with a free block of CHUNKSIZE bytes */
+@@ -177,6 +179,10 @@
+     bp = PREV_BLKP(bp);
+   }
+   /* $end mmfree */
++  /* Make sure the rover isn't pointing into the free block */
++  /* that we just coalesced */
++  if ((rover > (char *)bp) && (rover < NEXT_BLKP(bp)))
++    rover = bp;
+   /* $begin mmfree */
+   return bp;
+ }
+@@ -290,16 +296,20 @@
+ {
+   /* $end mmfirstfit */
+ 
+-  /* $begin mmfirstfit */
+-  /* First-fit search */
+-  void *bp;
+-
+-  for (bp = heap_listp; GET_SIZE(HDRP(bp)) > 0; bp = NEXT_BLKP(bp)) {
+-    if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp)))) {
+-      return bp;
+-    }
+-  }
+-  return NULL; /* No fit */
++  /* Next fit search */
++  char *oldrover = rover;
++
++  /* Search from the rover to the end of list */
++  for ( ; GET_SIZE(HDRP(rover)) > 0; rover = NEXT_BLKP(rover))
++    if (!GET_ALLOC(HDRP(rover)) && (asize <= GET_SIZE(HDRP(rover))))
++      return rover;
++
++  /* search from start of list to old rover */
++  for (rover = heap_listp; rover < oldrover; rover = NEXT_BLKP(rover))
++    if (!GET_ALLOC(HDRP(rover)) && (asize <= GET_SIZE(HDRP(rover))))
++      return rover;
++
++  return NULL;  /* no fit found */
+ }
+ /* $end mmfirstfit */
+ 

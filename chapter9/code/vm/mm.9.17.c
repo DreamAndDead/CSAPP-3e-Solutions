@@ -11,11 +11,6 @@
 #include "mm.h"
 #include "memlib.h"
 
-/*
- * If NEXT_FIT defined use next fit search, else use first-fit search
- */
-#define NEXT_FITx
-
 /* $begin mallocmacros */
 /* Basic constants and macros */
 #define WSIZE       4       /* Word and header/footer size (bytes) */ //line:vm:mm:beginconst
@@ -46,9 +41,7 @@
 
 /* Global variables */
 static char *heap_listp = 0;  /* Pointer to first block */
-#ifdef NEXT_FIT
 static char *rover;           /* Next fit rover */
-#endif
 
 /* Function prototypes for internal helper routines */
 static void *extend_heap(size_t words);
@@ -65,6 +58,8 @@ static void checkblock(void *bp);
 /* $begin mminit */
 int mm_init(void)
 {
+  mem_init();
+
   /* Create the initial empty heap */
   if ((heap_listp = mem_sbrk(4*WSIZE)) == (void *)-1) //line:vm:mm:begininit
     return -1;
@@ -75,9 +70,7 @@ int mm_init(void)
   heap_listp += (2*WSIZE);                     //line:vm:mm:endinit
   /* $end mminit */
 
-#ifdef NEXT_FIT
   rover = heap_listp;
-#endif
   /* $begin mminit */
 
   /* Extend the empty heap with a free block of CHUNKSIZE bytes */
@@ -186,12 +179,10 @@ static void *coalesce(void *bp)
     bp = PREV_BLKP(bp);
   }
   /* $end mmfree */
-#ifdef NEXT_FIT
   /* Make sure the rover isn't pointing into the free block */
   /* that we just coalesced */
   if ((rover > (char *)bp) && (rover < NEXT_BLKP(bp)))
     rover = bp;
-#endif
   /* $begin mmfree */
   return bp;
 }
@@ -305,7 +296,6 @@ static void *find_fit(size_t asize)
 {
   /* $end mmfirstfit */
 
-#ifdef NEXT_FIT
   /* Next fit search */
   char *oldrover = rover;
 
@@ -320,18 +310,6 @@ static void *find_fit(size_t asize)
       return rover;
 
   return NULL;  /* no fit found */
-#else
-  /* $begin mmfirstfit */
-  /* First-fit search */
-  void *bp;
-
-  for (bp = heap_listp; GET_SIZE(HDRP(bp)) > 0; bp = NEXT_BLKP(bp)) {
-    if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp)))) {
-      return bp;
-    }
-  }
-  return NULL; /* No fit */
-#endif
 }
 /* $end mmfirstfit */
 

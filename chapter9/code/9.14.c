@@ -2,7 +2,7 @@
  * 9.14.c
  */
 #include <stdio.h>
-#include "csapp.h"
+#include "vm/csapp.h"
 
 int main(int argc, char* argv[]) {
   struct stat stat;

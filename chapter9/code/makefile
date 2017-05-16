@@ -10,7 +10,7 @@ PROGS_TEST = $(patsubst %.c,%.test,$(SRCS))
 all: $(PROGS)
 
 %: %.c
-	$(CC) $(CFLAGS) -o $@ $< csapp.c
+	$(CC) $(CFLAGS) -o $@ $< vm/csapp.c
 
 test: $(PROGS_TEST)
 

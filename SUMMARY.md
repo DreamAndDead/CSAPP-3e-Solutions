@@ -155,6 +155,16 @@
     - [8.26](chapter8/8.26.md)
 
 * [9. Virtual Memory](chapter3/index.md)
+    - [9.11](chapter9/9.11.md)
+    - [9.12](chapter9/9.12.md)
+    - [9.13](chapter9/9.13.md)
+    - [9.14](chapter9/9.14.md)
+    - [9.15](chapter9/9.15.md)
+    - [9.16](chapter9/9.16.md)
+    - [9.17](chapter9/9.17.md)
+    - [9.18](chapter9/9.18.md)
+    - [9.19](chapter9/9.19.md)
+    - [9.20](chapter9/9.20.md)
 
 ## Part 3 Interaction and Communication between Programs
 

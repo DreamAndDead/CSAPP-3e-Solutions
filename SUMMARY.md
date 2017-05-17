@@ -86,7 +86,7 @@
     - [4.58](chapter4/4.58.md)
     - [4.59](chapter4/4.59.md)
 
-* [5. Optimizing Program Performance](chapter3/index.md)
+* [5. Optimizing Program Performance](chapter5/index.md)
     - [5.13](chapter5/5.13.md)
     - [5.14](chapter5/5.14.md)
     - [5.15](chapter5/5.15.md)
@@ -95,7 +95,7 @@
     - [5.18](chapter5/5.18.md)
     - [5.19](chapter5/5.19.md)
 
-* [6. The Memory Hierarchy](chapter3/index.md)
+* [6. The Memory Hierarchy](chapter6/index.md)
     - [6.22](chapter6/6.22.md)
     - [6.23](chapter6/6.23.md)
     - [6.24](chapter6/6.24.md)
@@ -124,7 +124,7 @@
 
 ## Part 2 Running Programs on a System
 
-* [7. Linking](chapter3/index.md)
+* [7. Linking](chapter7/index.md)
     - [7.6](chapter7/7.6.md)
     - [7.7](chapter7/7.7.md)
     - [7.8](chapter7/7.8.md)
@@ -134,7 +134,7 @@
     - [7.12](chapter7/7.12.md)
     - [7.13](chapter7/7.13.md)
 
-* [8. Exceptional Control Flow](chapter3/index.md)
+* [8. Exceptional Control Flow](chapter8/index.md)
     - [8.9](chapter8/8.9.md)
     - [8.10](chapter8/8.10.md)
     - [8.11](chapter8/8.11.md)
@@ -154,7 +154,7 @@
     - [8.25](chapter8/8.25.md)
     - [8.26](chapter8/8.26.md)
 
-* [9. Virtual Memory](chapter3/index.md)
+* [9. Virtual Memory](chapter9/index.md)
     - [9.11](chapter9/9.11.md)
     - [9.12](chapter9/9.12.md)
     - [9.13](chapter9/9.13.md)
@@ -168,6 +168,45 @@
 
 ## Part 3 Interaction and Communication between Programs
 
-* [10. System-Level I/O](chapter3/index.md)
-* [11. Network Programming](chapter3/index.md)
-* [12. Concurrent Programming](chapter3/index.md)
+* [10. System-Level I/O](chapter10/index.md)
+    - [10.6](chapter10/10.6.md)
+    - [10.7](chapter10/10.7.md)
+    - [10.8](chapter10/10.8.md)
+    - [10.9](chapter10/10.9.md)
+    - [10.10](chapter10/10.10.md)
+
+* [11. Network Programming](chapter11/index.md)
+    <!--- [11.6](chapter11/11.6.md)-->
+    <!--- [11.7](chapter11/11.7.md)-->
+    <!--- [11.8](chapter11/11.8.md)-->
+    <!--- [11.9](chapter11/11.9.md)-->
+    <!--- [11.10](chapter11/11.10.md)-->
+    <!--- [11.11](chapter11/11.11.md)-->
+    <!--- [11.12](chapter11/11.12.md)-->
+    <!--- [11.13](chapter11/11.13.md)-->
+
+* [12. Concurrent Programming](chapter12/index.md)
+    <!--- [12.16](chapter12/12.16.md)-->
+    <!--- [12.17](chapter12/12.17.md)-->
+    <!--- [12.18](chapter12/12.18.md)-->
+    <!--- [12.19](chapter12/12.19.md)-->
+    <!--- [12.20](chapter12/12.20.md)-->
+    <!--- [12.21](chapter12/12.21.md)-->
+    <!--- [12.22](chapter12/12.22.md)-->
+    <!--- [12.23](chapter12/12.23.md)-->
+    <!--- [12.24](chapter12/12.24.md)-->
+    <!--- [12.25](chapter12/12.25.md)-->
+    <!--- [12.26](chapter12/12.26.md)-->
+    <!--- [12.27](chapter12/12.27.md)-->
+    <!--- [12.28](chapter12/12.28.md)-->
+    <!--- [12.29](chapter12/12.29.md)-->
+    <!--- [12.30](chapter12/12.30.md)-->
+    <!--- [12.31](chapter12/12.31.md)-->
+    <!--- [12.32](chapter12/12.32.md)-->
+    <!--- [12.33](chapter12/12.33.md)-->
+    <!--- [12.34](chapter12/12.34.md)-->
+    <!--- [12.35](chapter12/12.35.md)-->
+    <!--- [12.36](chapter12/12.36.md)-->
+    <!--- [12.37](chapter12/12.37.md)-->
+    <!--- [12.38](chapter12/12.38.md)-->
+    <!--- [12.39](chapter12/12.39.md)-->

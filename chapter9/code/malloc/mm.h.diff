@@ -1,0 +1,12 @@
+--- ../vm/mm.h	2016-03-02 02:16:51.000000000 +0800
++++ mm.h	2017-05-17 10:41:47.186459585 +0800
+@@ -5,6 +5,9 @@
+ extern void mm_free (void *ptr);
+ /* $end mallocinterface */
+ 
++#define malloc(size) mm_malloc(size)
++#define free(ptr) mm_free(ptr)
++
+ extern void *mm_realloc(void *ptr, size_t size);
+ extern void *mm_calloc (size_t nmemb, size_t size);
+ extern void mm_checkheap(int verbose);

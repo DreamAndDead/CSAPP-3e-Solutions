@@ -16,7 +16,8 @@ Computer Systems: A Programmer's Perspective Third Edition Solutions
 |8|finished|
 |9|finished|
 |10|finished|
-|11-12|todo|
+|11|finished|
+|12|todo|
 
 ## code
 
@@ -42,3 +43,7 @@ If you encounter some problem, you can [email me][gmail] or comment on disqus
 in specific solution page:)
 
 [gmail]: mailto:aquairain@gmail.com
+
+## LICENSE
+
+GPLv3

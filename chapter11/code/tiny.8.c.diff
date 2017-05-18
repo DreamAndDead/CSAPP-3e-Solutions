@@ -1,0 +1,44 @@
+--- tiny.origin.c	2017-05-18 11:46:21.748395519 +0800
++++ tiny.8.c	2017-05-18 21:57:27.571152003 +0800
+@@ -12,6 +12,7 @@
+ void serve_dynamic(int fd, char *filename, char *cgiargs);
+ void clienterror(int fd, char *cause, char *errnum,
+     char *shortmsg, char *longmsg);
++void sigchild_handler(int sig);
+ 
+ int main(int argc, char **argv)
+ {
+@@ -26,6 +27,9 @@
+     exit(1);
+   }
+ 
++  if (Signal(SIGCHLD, sigchild_handler) == SIG_ERR)
++    unix_error("signal child handler error");
++
+   listenfd = Open_listenfd(argv[1]);
+   while (1) {
+     clientlen = sizeof(clientaddr);
+@@ -38,6 +42,15 @@
+   }
+ }
+ 
++void sigchild_handler(int sig) {
++  int old_errno = errno;
++  int status;
++  pid_t pid;
++  while ((pid = waitpid(-1, &status, WNOHANG)) > 0) {
++  }
++  errno = old_errno;
++}
++
+ /*
+  * doit - handle one HTTP request/response transaction
+  */
+@@ -196,7 +209,6 @@
+     Dup2(fd, STDOUT_FILENO);         /* Redirect stdout to client */ //line:netp:servedynamic:dup2
+     Execve(filename, emptylist, environ); /* Run CGI program */ //line:netp:servedynamic:execve
+   }
+-  Wait(NULL); /* Parent waits for and reaps child */ //line:netp:servedynamic:wait
+ }
+ 
+ /*

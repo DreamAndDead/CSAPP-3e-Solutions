@@ -1,0 +1,15 @@
+--- adder.c	2017-05-18 14:26:13.191017029 +0800
++++ post-adder.c	2017-05-18 16:12:28.407954630 +0800
+@@ -12,10 +12,8 @@
+   if ((buf = getenv("QUERY_STRING")) != NULL) {
+     p = strchr(buf, '&');
+     *p = '\0';
+-    strcpy(arg1, buf);
+-    strcpy(arg2, p+1);
+-    n1 = atoi(arg1);
+-    n2 = atoi(arg2);
++    sscanf(buf, "first=%d", &n1);
++    sscanf(p+1, "second=%d", &n2);
+   }
+ 
+   /* Make the response body */

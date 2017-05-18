@@ -1,0 +1,65 @@
+--- tiny.origin.c	2017-05-18 11:46:21.748395519 +0800
++++ tiny.12.c	2017-05-18 16:14:39.415707403 +0800
+@@ -5,7 +5,7 @@
+ #include "csapp.h"
+ 
+ void doit(int fd);
+-void read_requesthdrs(rio_t *rp);
++int read_requesthdrs(rio_t *rp, char *method);
+ int parse_uri(char *uri, char *filename, char *cgiargs);
+ void serve_static(int fd, char *filename, int filesize);
+ void get_filetype(char *filename, char *filetype);
+@@ -55,12 +55,14 @@
+     return;
+   printf("%s", buf);
+   sscanf(buf, "%s %s %s", method, uri, version);       //line:netp:doit:parserequest
+-  if (strcasecmp(method, "GET")) {                     //line:netp:doit:beginrequesterr
++  if (!(strcasecmp(method, "GET") == 0 || strcasecmp(method, "POST") == 0)) {
+     clienterror(fd, method, "501", "Not Implemented",
+         "Tiny does not implement this method");
+     return;
+   }                                                    //line:netp:doit:endrequesterr
+-  read_requesthdrs(&rio);                              //line:netp:doit:readrequesthdrs
++  int param_len = read_requesthdrs(&rio, method);
++
++  Rio_readnb(&rio, buf, param_len);
+ 
+   /* Parse URI from GET request */
+   is_static = parse_uri(uri, filename, cgiargs);       //line:netp:doit:staticcheck
+@@ -84,24 +86,29 @@
+           "Tiny couldn't run the CGI program");
+       return;
+     }
+-    serve_dynamic(fd, filename, cgiargs);            //line:netp:doit:servedynamic
++    if (strcasecmp(method, "GET") == 0)
++      serve_dynamic(fd, filename, cgiargs);
++    else
++      serve_dynamic(fd, filename, buf);
+   }
+ }
+ 
+ /*
+  * read_requesthdrs - read HTTP request headers
+  */
+-void read_requesthdrs(rio_t *rp)
++int read_requesthdrs(rio_t *rp, char *method)
+ {
+   char buf[MAXLINE];
++  int len = 0;
+ 
+-  Rio_readlineb(rp, buf, MAXLINE);
+-  printf("%s", buf);
+-  while(strcmp(buf, "\r\n")) {          //line:netp:readhdrs:checkterm
++  do {
+     Rio_readlineb(rp, buf, MAXLINE);
+     printf("%s", buf);
+-  }
+-  return;
++    if (strcasecmp(method, "POST") == 0 && strncasecmp(buf, "Content-Length:", 15) == 0)
++      sscanf(buf, "Content-Length: %d", &len);
++  } while(strcmp(buf, "\r\n"));
++
++  return len;
+ }
+ /*
+  * parse_uri - parse URI into filename and CGI args

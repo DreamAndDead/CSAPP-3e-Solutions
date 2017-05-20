@@ -176,14 +176,14 @@
     - [10.10](chapter10/10.10.md)
 
 * [11. Network Programming](chapter11/index.md)
-    <!--- [11.6](chapter11/11.6.md)-->
-    <!--- [11.7](chapter11/11.7.md)-->
-    <!--- [11.8](chapter11/11.8.md)-->
-    <!--- [11.9](chapter11/11.9.md)-->
-    <!--- [11.10](chapter11/11.10.md)-->
-    <!--- [11.11](chapter11/11.11.md)-->
-    <!--- [11.12](chapter11/11.12.md)-->
-    <!--- [11.13](chapter11/11.13.md)-->
+    - [11.6](chapter11/11.6.md)
+    - [11.7](chapter11/11.7.md)
+    - [11.8](chapter11/11.8.md)
+    - [11.9](chapter11/11.9.md)
+    - [11.10](chapter11/11.10.md)
+    - [11.11](chapter11/11.11.md)
+    - [11.12](chapter11/11.12.md)
+    - [11.13](chapter11/11.13.md)
 
 * [12. Concurrent Programming](chapter12/index.md)
     <!--- [12.16](chapter12/12.16.md)-->

@@ -19,3 +19,11 @@ test: $(PROGS_TEST)
 
 diff:
 	(diff -u 12.23.bug.c 12.23.c > 12.23.c.diff; cd .)
+
+measure:
+	(time ./12.34.non.concurrent)
+	(time ./12.34.concurrent)
+
+clean:
+	rm -rf 12.34.non.concurrent
+	rm -rf 12.34.concurrent

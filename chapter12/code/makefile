@@ -22,6 +22,7 @@ test: $(PROGS_TEST)
 diff:
 	(diff -u 12.23.bug.c 12.23.c > 12.23.c.diff; cd .)
 	(diff -u 12.tiny.c 12.35.c > 12.35.c.diff; cd .)
+	(diff -u 12.tiny.c 12.37.c > 12.37.c.diff; cd .)
 
 measure:
 	(time ./12.34.non.concurrent)

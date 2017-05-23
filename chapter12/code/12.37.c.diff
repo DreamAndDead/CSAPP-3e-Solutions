@@ -1,0 +1,42 @@
+--- 12.tiny.c	2017-05-23 17:04:32.772074734 +0800
++++ 12.37.c	2017-05-23 18:51:24.070696163 +0800
+@@ -13,9 +13,13 @@
+ void clienterror(int fd, char *cause, char *errnum,
+     char *shortmsg, char *longmsg);
+ 
++void *thread(void *vargp);
++
+ int main(int argc, char **argv)
+ {
+   int listenfd, connfd;
++  int *connfdp;
++  pthread_t tid;
+   char hostname[MAXLINE], port[MAXLINE];
+   socklen_t clientlen;
+   struct sockaddr_storage clientaddr;
+@@ -35,11 +39,23 @@
+     Getnameinfo((SA *) &clientaddr, clientlen, hostname, MAXLINE,
+         port, MAXLINE, 0);
+     printf("Accepted connection from (%s, %s)\n", hostname, port);
+-    doit(connfd);                                             //line:netp:tiny:doit
+-    Close(connfd);                                            //line:netp:tiny:close
++
++    connfdp = (int*)Malloc(sizeof(int));
++    *connfdp = connfd;
++    Pthread_create(&tid, NULL, thread, connfdp);
+   }
+ }
+ 
++void *thread(void *vargp) {
++  int connfd = *(int*)vargp;
++  Pthread_detach(Pthread_self());
++  Free(vargp);
++
++  doit(connfd);
++  Close(connfd);
++  return NULL;
++}
++
+ /*
+  * doit - handle one HTTP request/response transaction
+  */

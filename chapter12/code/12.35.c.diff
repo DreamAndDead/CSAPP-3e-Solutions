@@ -1,0 +1,29 @@
+--- 12.tiny.c	2017-05-23 17:04:32.772074734 +0800
++++ 12.35.c	2017-05-23 17:33:07.798995815 +0800
+@@ -1,6 +1,8 @@
+ /*
+- * tiny.c - A simple, iterative HTTP/1.0 Web server that uses the
++ * 12.35.c - A simple, iterative HTTP/1.0 Web server that uses the
+  *     GET method to serve static and dynamic content.
++ *
++ *     concurrent server in multi process way.
+  */
+ #include "csapp.h"
+ 
+@@ -35,8 +37,14 @@
+     Getnameinfo((SA *) &clientaddr, clientlen, hostname, MAXLINE,
+         port, MAXLINE, 0);
+     printf("Accepted connection from (%s, %s)\n", hostname, port);
+-    doit(connfd);                                             //line:netp:tiny:doit
+-    Close(connfd);                                            //line:netp:tiny:close
++
++    if (Fork() == 0) {
++      Close(listenfd);
++      doit(connfd);                                             //line:netp:tiny:doit
++      Close(connfd);                                            //line:netp:tiny:close
++      exit(0);
++    }
++    Close(connfd);
+   }
+ }
+ 

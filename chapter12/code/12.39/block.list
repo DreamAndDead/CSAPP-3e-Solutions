@@ -1,0 +1,12 @@
+# start with # is a comment
+
+# this file record the url that should be blocked(only http)
+# format like
+# http://localhost:8000/
+# http://127.0.0.1:8000/
+# http://localhost:8000/file
+# http://dict.cn/
+
+http://localhost:8000/
+http://dict.cn/
+

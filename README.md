@@ -15,11 +15,12 @@ cd
 
     cd CSAPP-3e-Solutions
 
-**warning! make and test are broken now, wait for fixxing**
 
 make
 
     make
+
+**warning! test are broken now, fixxing now**
 
 test, after make
 

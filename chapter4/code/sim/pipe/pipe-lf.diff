@@ -1,5 +1,5 @@
---- origin-pipe-lf.hcl	2017-05-03 09:46:15.335974816 +0800
-+++ pipe-lf.hcl	2017-05-03 10:09:45.859933140 +0800
+--- origin-pipe-lf.hcl	2017-05-12 10:15:41.753100002 +0800
++++ pipe-lf.hcl	2017-05-12 10:15:41.757099968 +0800
 @@ -271,6 +271,7 @@
  ##   from memory stage when appropriate
  ## Here it is set to the default used in the normal pipeline

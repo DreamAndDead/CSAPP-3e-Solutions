@@ -11,15 +11,23 @@ clone code
 
     git clone https://github.com/DreamAndDead/CSAPP-3e-Solutions.git
 
+cd
+
+    cd CSAPP-3e-Solutions
+
 **warning! make and test are broken now, wait for fixxing**
 
-compile
+make
 
-    cd CSAPP-3e-Solutions && make
+    make
 
-test
+test, after make
 
     make test
+
+clean
+
+    make clean
 
 
 ## feedback

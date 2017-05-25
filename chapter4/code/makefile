@@ -3,6 +3,7 @@
 #
 
 all:
+	(cd sim; make)
 	(cd bubble-sort; make)
 	(cd iaddq-seq; make)
 	(cd iaddq-pipe; make)
@@ -23,6 +24,10 @@ test:
 	(cd pipe-nt; make test)
 	(cd pipe-stall; make test)
 	(cd switch; make test)
+
+.PHONY: clean
+clean:
+	(cd sim; make clean)
 
 # vim:ft=make
 #

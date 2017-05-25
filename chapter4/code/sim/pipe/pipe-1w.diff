@@ -1,5 +1,5 @@
---- origin-pipe-1w.hcl	2017-05-03 10:12:23.037928495 +0800
-+++ pipe-1w.hcl	2017-05-03 10:12:33.403928189 +0800
+--- origin-pipe-1w.hcl	2017-05-12 10:15:41.753100002 +0800
++++ pipe-1w.hcl	2017-05-12 10:15:41.757099968 +0800
 @@ -157,6 +157,7 @@
  ## so that it will be IPOP2 when fetched for second time.
  word f_icode = [

@@ -30,5 +30,5 @@ bubble_p:
 	.cfi_endproc
 .LFE0:
 	.size	bubble_p, .-bubble_p
-	.ident	"GCC: (Gentoo 4.9.4 p1.0, pie-0.6.4) 4.9.4"
+	.ident	"GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.4) 5.4.0 20160609"
 	.section	.note.GNU-stack,"",@progbits

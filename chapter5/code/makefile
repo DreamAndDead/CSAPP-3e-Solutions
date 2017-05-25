@@ -12,7 +12,7 @@ PROGS_TEST = $(patsubst %.c,%.test,$(SRCS))
 all: $(PROGS)
 
 %: %.c
-	$(CC) $(CFLAGS) $(LIB) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $< $(LIB)
 
 test: $(PROGS_TEST)
 
@@ -29,5 +29,8 @@ test: $(PROGS_TEST)
 	env CPUPROFILE=/tmp/prof.out ./prof.5.19
 	pprof prof.5.19 /tmp/prof.out --text
 
+.PHONY : clean
+clean:
+	find . -type f -executable -print0 | xargs -0 rm --
 # vim:ft=make
 #

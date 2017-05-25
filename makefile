@@ -27,3 +27,17 @@ test:
 	(cd chapter10/code; make test)
 	(cd chapter11/code; make test)
 	(cd chapter12/code; make test)
+
+.PHONY : clean
+clean:
+	(cd chapter2/code; make clean)
+	(cd chapter3/code; make clean)
+	(cd chapter4/code; make clean)
+	(cd chapter5/code; make clean)
+	(cd chapter6/code; make clean)
+	(cd chapter7/code; make clean)
+	(cd chapter8/code; make clean)
+	(cd chapter9/code; make clean)
+	(cd chapter10/code; make clean)
+	(cd chapter11/code; make clean)
+	(cd chapter12/code; make clean)

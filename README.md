@@ -2,23 +2,6 @@
 
 Computer Systems: A Programmer's Perspective Third Edition Solutions
 
-## status
-
-|Chapter|Status|
-|----|-----|
-|1|finished|
-|2|finished|
-|3|finished|
-|4|finished|
-|5|finished|
-|6|finished|
-|7|finished|
-|8|finished|
-|9|finished|
-|10|finished|
-|11|finished|
-|12|working on 39|
-
 ## code
 
 Almost all solutions has its own code piece in c/gas/yas and every code piece

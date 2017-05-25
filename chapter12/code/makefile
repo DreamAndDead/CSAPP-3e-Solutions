@@ -28,9 +28,9 @@ measure:
 	(time ./12.34.non.concurrent)
 	(time ./12.34.concurrent)
 
+.PHONY : clean
 clean:
-	rm -rf 12.34.non.concurrent
-	rm -rf 12.34.concurrent
+	find . -type f -executable -print0 | xargs -0 rm --
 
 benchmark:
 	wrk -d4 http://localhost:5000

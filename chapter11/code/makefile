@@ -12,10 +12,7 @@ all: $(PROGS) diff cgi
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $< csapp.c
 
-test: $(PROGS_TEST)
-
-%.test: %
-	./$<
+test:
 
 diff:
 	(diff -u tiny.origin.c tiny.6.c > tiny.6.c.diff; cd .)
@@ -28,3 +25,7 @@ diff:
 
 cgi:
 	(cd cgi-bin; make)
+
+.PHONY : clean
+clean:
+	find . -type f -executable -print0 | xargs -0 rm --

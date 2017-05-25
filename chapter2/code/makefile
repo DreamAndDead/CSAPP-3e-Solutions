@@ -3,19 +3,16 @@
 #
 CC = gcc
 CFLAGS = -m64 -std=c99
-SLIBS = ./lib/librandom.a
 SRCS = $(wildcard *.c)
 PROGS = $(patsubst %.c,%,$(SRCS))
 PROGS_TEST = $(patsubst %.c,%.test,$(SRCS))
+LIBFILE = ./lib/random.c
 
-all: static-lib $(PROGS)
-
-static-lib:
-	(cd lib; make)
+all: $(PROGS)
 	(cd floats; make)
 
 %: %.c
-	$(CC) $(CFLAGS) -o $@ $< $(SLIBS)
+	$(CC) $(CFLAGS) -o $@ $< $(LIBFILE)
 
 test: $(PROGS_TEST)
 	(cd floats; make test)

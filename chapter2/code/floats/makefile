@@ -3,9 +3,10 @@
 #
 CFLAGS = -m64 -std=c99
 SRCS = $(wildcard *.c)
+LIBFILE = ../lib/random.c
 
 all:
-	gcc $(CFLAGS) $(SRCS) ../lib/librandom.a -o main
+	gcc $(CFLAGS) $(SRCS) $(LIBFILE) -o main
 
 test:
 	./main

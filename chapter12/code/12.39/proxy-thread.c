@@ -13,24 +13,19 @@
 int separate_uri(char *uri, char *host, char *port, char *path);
 void parse_block_file(char *filename, char list[MAXENTRY][MAXLINE], int limit);
 int blocked_uri(char *uri, char list[MAXENTRY][MAXLINE]);
+void *proxy_thread(void *vargp);
+
+// url black list
+static char block_list[MAXENTRY][MAXLINE];
+// log file fd
+static int logfd;
 
 int main(int argc, char **argv) {
-  int i, listenfd, connfd;
-  int clientfd;
-
+  int listenfd;
   socklen_t clientlen;
   struct sockaddr_storage clientaddr;
-
-  rio_t client_rio, server_rio;
-  char c_buf[MAXLINE], s_buf[MAXLINE];
-  ssize_t sn, cn;
-
-  char method[MAXLINE], uri[MAXLINE], version[MAXLINE];
-  char host[MAXLINE], port[MAXLINE], path[MAXLINE];
-
-  char block_list[MAXENTRY][MAXLINE];
-  int logfd;
-  char log_buf[MAXLINE];
+  int *connfdp;
+  pthread_t tid;
 
   if (argc != 2) {
     fprintf(stderr, "usage: %s <port>\n", argv[0]);
@@ -41,87 +36,104 @@ int main(int argc, char **argv) {
   }
 
   logfd = Open("log.list", O_WRONLY | O_APPEND, 0);
-
   memset(block_list, '\0', MAXLINE * MAXENTRY);
   parse_block_file("block.list", block_list, MAXENTRY);
-
-  /*for (i = 0; block_list[i][0] != '\0'; i++)*/
-    /*printf("%s", block_list[i]);*/
 
   while (1) {
     // wait for connection as a server
     clientlen = sizeof(struct sockaddr_storage);
-    connfd = Accept(listenfd, (SA *) &clientaddr, &clientlen);
-    Rio_readinitb(&server_rio, connfd);
-
-    /*
-     * if uri is full path url like http://localhost:8000/server.c
-     * remove host part http://localhost:8000
-     * only pass /server.c to server
-     */
-    // parse HTTP request first line
-    if (!Rio_readlineb(&server_rio, s_buf, MAXLINE)) {
-      Close(connfd);
-      continue;
-    }
-    sscanf(s_buf, "%s %s %s", method, uri, version);
-    // if uri is blocked?
-    if (blocked_uri(uri, block_list)) {
-      printf("%s is blocked\n", uri);
-      Close(connfd);
-      continue;
-    }
-    // log visit
-    sprintf(log_buf, "visit url: %s\n", uri);
-    Write(logfd, log_buf, strlen(log_buf));
-
-    memset(host, '\0', MAXLINE);
-    memset(port, '\0', MAXLINE);
-    memset(path, '\0', MAXLINE);
-    int res;
-    if ((res = separate_uri(uri, host, port, path)) == -1) {
-      fprintf(stderr, "not http protocol\n");
-      Close(connfd);
-      continue;
-    } else if (res == 0) {
-      fprintf(stderr, "not a abslute request path\n");
-      Close(connfd);
-      continue;
-    }
-
-    // connect server as a client
-    clientfd = Open_clientfd(host, port);
-    Rio_readinitb(&client_rio, clientfd);
-
-    /*
-     *  browser  -->  proxy  -->  server
-     *
-     *  send requests
-     */
-    // write first request line
-    sprintf(s_buf, "%s %s %s\n", method, path, version);
-    Rio_writen(clientfd, s_buf, strlen(s_buf));
-    printf("%s", s_buf);
-    do {
-      // pass next http requests
-      sn = Rio_readlineb(&server_rio, s_buf, MAXLINE);
-      printf("%s", s_buf);
-      Rio_writen(clientfd, s_buf, sn);
-    } while(strcmp(s_buf, "\r\n"));
-
-    /*
-     *  server  -->  proxy  -->  browser
-     *
-     *  server send response back
-     */
-    while ((cn = Rio_readlineb(&client_rio, c_buf, MAXLINE)) != 0)
-      Rio_writen(connfd, c_buf, cn);
-
-    Close(connfd);
-    Close(clientfd);
+    connfdp = Malloc(sizeof(int));
+    *connfdp = Accept(listenfd, (SA *) &clientaddr, &clientlen);
+    // new thread
+    Pthread_create(&tid, NULL, proxy_thread, connfdp);
   }
 
   Close(logfd);
+}
+
+void *proxy_thread(void *vargp) {
+  pthread_t tid = Pthread_self();
+  Pthread_detach(tid);
+
+  int connfd = *(int*)vargp;
+  Free(vargp);
+
+  rio_t client_rio, server_rio;
+  char c_buf[MAXLINE], s_buf[MAXLINE];
+  ssize_t sn, cn;
+
+  char method[MAXLINE], uri[MAXLINE], version[MAXLINE];
+  char host[MAXLINE], port[MAXLINE], path[MAXLINE];
+
+  char log_buf[MAXLINE];
+
+  int clientfd;
+  Rio_readinitb(&server_rio, connfd);
+  /*
+   * if uri is full path url like http://localhost:8000/server.c
+   * remove host part http://localhost:8000
+   * only pass /server.c to server
+   */
+  // parse HTTP request first line
+  if (!Rio_readlineb(&server_rio, s_buf, MAXLINE)) {
+    Close(connfd);
+    return NULL;
+  }
+  sscanf(s_buf, "%s %s %s", method, uri, version);
+  // if uri is blocked?
+  if (blocked_uri(uri, block_list)) {
+    printf("thread %ld: %s is blocked\n", tid, uri);
+    Close(connfd);
+    return NULL;
+  }
+  // log visit
+  sprintf(log_buf, "thread %ld: visit url: %s\n", tid, uri);
+  Write(logfd, log_buf, strlen(log_buf));
+
+  memset(host, '\0', MAXLINE);
+  memset(port, '\0', MAXLINE);
+  memset(path, '\0', MAXLINE);
+  int res;
+  if ((res = separate_uri(uri, host, port, path)) == -1) {
+    fprintf(stderr, "tid %ld: not http protocol\n", tid);
+    Close(connfd);
+    return NULL;
+  } else if (res == 0) {
+    fprintf(stderr, "tid %ld: not a abslute request path\n", tid);
+    Close(connfd);
+    return NULL;
+  }
+
+  // connect server as a client
+  clientfd = Open_clientfd(host, port);
+  Rio_readinitb(&client_rio, clientfd);
+
+  /*
+   *  browser  -->  proxy  -->  server
+   *
+   *  send requests
+   */
+  // write first request line
+  sprintf(s_buf, "%s %s %s\n", method, path, version);
+  Rio_writen(clientfd, s_buf, strlen(s_buf));
+  printf("tid %ld: %s", tid, s_buf);
+  do {
+    // pass next http requests
+    sn = Rio_readlineb(&server_rio, s_buf, MAXLINE);
+    printf("tid %ld: %s", tid, s_buf);
+    Rio_writen(clientfd, s_buf, sn);
+  } while(strcmp(s_buf, "\r\n"));
+
+  /*
+   *  server  -->  proxy  -->  browser
+   *
+   *  server send response back
+   */
+  while ((cn = Rio_readlineb(&client_rio, c_buf, MAXLINE)) != 0)
+    Rio_writen(connfd, c_buf, cn);
+
+  Close(connfd);
+  Close(clientfd);
 }
 
 /*

@@ -45,9 +45,6 @@ int main(int argc, char **argv) {
   memset(block_list, '\0', MAXLINE * MAXENTRY);
   parse_block_file("block.list", block_list, MAXENTRY);
 
-  /*for (i = 0; block_list[i][0] != '\0'; i++)*/
-    /*printf("%s", block_list[i]);*/
-
   while (1) {
     // wait for connection as a server
     clientlen = sizeof(struct sockaddr_storage);
@@ -177,6 +174,10 @@ int separate_uri(char *uri, char *host, char *port, char *path) {
   strcpy(path, end);
 }
 
+/*
+ * read block file, parse all the entries and save into list
+ * entries count no more than limit
+ */
 void parse_block_file(char *filename, char list[MAXENTRY][MAXLINE], int limit) {
   int blockfd;
   char block_buf[MAXLINE];

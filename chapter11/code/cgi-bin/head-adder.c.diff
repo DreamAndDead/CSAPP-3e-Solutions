@@ -1,6 +1,10 @@
 --- adder.c	2017-05-18 14:26:13.191017029 +0800
-+++ head-adder.c	2017-05-18 15:06:19.276565787 +0800
-@@ -4,7 +4,7 @@
++++ head-adder.c	2017-05-26 15:44:54.912608094 +0800
+@@ -1,10 +1,10 @@
+ /*
+- * adder.c - a minimal CGI program that adds two numbers together
++ * head-adder.c - a minimal CGI program that adds two numbers together
+  */
  #include "../csapp.h"
  
  int main(void) {

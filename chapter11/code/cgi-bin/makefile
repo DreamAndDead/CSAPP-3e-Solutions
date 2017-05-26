@@ -15,5 +15,11 @@ diff:
 	(diff -u adder.c head-adder.c > head-adder.c.diff; cd .)
 	(diff -u adder.c post-adder.c > post-adder.c.diff; cd .)
 
+test:
+
+.PHONY: clean
+clean:
+	find . -type f -executable -print0 | xargs -0 rm -f --
+
 # vim:ft=make
 #

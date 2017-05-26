@@ -7,12 +7,14 @@ SRCS = $(wildcard tiny.*.c)
 PROGS = $(patsubst %.c,%,$(SRCS))
 PROGS_TEST = $(patsubst %.c,%.test,$(SRCS))
 
-all: $(PROGS) diff cgi
+all: $(PROGS) diff
+	(cd cgi-bin; make)
 
 %: %.c
 	$(CC) $(CFLAGS) -o $@ $< csapp.c
 
 test:
+	(cd cgi-bin; make test)
 
 diff:
 	(diff -u tiny.origin.c tiny.6.c > tiny.6.c.diff; cd .)
@@ -23,9 +25,7 @@ diff:
 	(diff -u tiny.origin.c tiny.12.c > tiny.12.c.diff; cd .)
 	(diff -u tiny.origin.c tiny.13.c > tiny.13.c.diff; cd .)
 
-cgi:
-	(cd cgi-bin; make)
-
 .PHONY : clean
 clean:
-	find . -type f -executable -print0 | xargs -0 rm --
+	(cd cgi-bin; make clean)
+	find . -type f -executable -print0 | xargs -0 rm -f --

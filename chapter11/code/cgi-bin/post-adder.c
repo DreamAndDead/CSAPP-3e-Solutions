@@ -1,5 +1,5 @@
 /*
- * adder.c - a minimal CGI program that adds two numbers together
+ * post-adder.c - a minimal CGI program that adds two numbers together
  */
 #include "../csapp.h"
 

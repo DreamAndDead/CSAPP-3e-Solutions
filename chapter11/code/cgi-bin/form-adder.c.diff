@@ -1,5 +1,12 @@
 --- adder.c	2017-05-18 14:26:13.191017029 +0800
-+++ form-adder.c	2017-05-18 14:37:23.484407421 +0800
++++ form-adder.c	2017-05-26 15:44:40.429085031 +0800
+@@ -1,5 +1,5 @@
+ /*
+- * adder.c - a minimal CGI program that adds two numbers together
++ * form-adder.c - a minimal CGI program that adds two numbers together
+  */
+ #include "../csapp.h"
+ 
 @@ -12,10 +12,8 @@
    if ((buf = getenv("QUERY_STRING")) != NULL) {
      p = strchr(buf, '&');

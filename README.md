@@ -26,12 +26,9 @@ cd
 
     cd CSAPP-3e-Solutions
 
-
 make
 
     make
-
-**warning! test are broken now, fixxing now**
 
 test, after make
 

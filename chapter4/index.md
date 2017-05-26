@@ -1,5 +1,9 @@
 # Processor Architecture
 
+4.1 - 4.44 visit book
+
+4.45 - 4.59 visit here
+
 ## yas simulation
 
 This chapter focus on processor architecture and design a little simple

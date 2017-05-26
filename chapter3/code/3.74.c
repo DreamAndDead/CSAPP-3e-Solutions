@@ -1,5 +1,5 @@
 /*
- * 3.73.c
+ * 3.74.c
  */
 #include <stdio.h>
 #include <assert.h>

@@ -3,8 +3,8 @@
 #
 
 all:
-	gcc -c -m64 loop.s -o loop.o
-	gcc loop.o loop2.c main.c -o main
+	gcc -c -m64 sum-col.s -o sum-col.o
+	gcc main.c sum-col2.c sum-col.o -o main
 
 test:
 	./main
@@ -12,7 +12,6 @@ test:
 .PHONY: clean
 clean:
 	rm main
-
 
 # vim:ft=make
 #

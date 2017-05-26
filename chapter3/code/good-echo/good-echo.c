@@ -1,5 +1,5 @@
 /*
- * good_echo.c
+ * good-echo.c
  */
 #include <stdio.h>
 #include <assert.h>

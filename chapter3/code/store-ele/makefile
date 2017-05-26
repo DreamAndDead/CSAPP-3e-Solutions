@@ -1,6 +1,5 @@
 #
 # makefile
-# zdw, 2017-04-22 14:12
 #
 
 all:
@@ -10,6 +9,9 @@ all:
 test:
 	./main
 
+.PHONY: clean
+clean:
+	rm main
 
 # vim:ft=make
 #

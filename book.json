@@ -1,14 +1,8 @@
 {
-  "plugins": [ "include", "disqus", "mathjax", "ga" ],
+  "plugins": [ "include", "mathjax" ],
   "pluginsConfig": {
     "mathjax": {
       "forceSVG": true
-    },
-    "disqus": {
-      "shortName": "csapp-solutions"
-    },
-    "ga": {
-      "token": "UA-93899485-2"
     }
   }
 }

@@ -2,6 +2,20 @@
 
 Computer Systems: A Programmer's Perspective Third Edition Solutions
 
+## serve locally
+
+install `gitbook-cli`
+
+    npm i -g gitbook-cli
+
+install plugins
+
+    gitbook install
+
+serve
+
+    gitbook serve --no-watch
+
 ## code
 
 Almost all solutions has its own code piece in c/gas/yas and every code piece

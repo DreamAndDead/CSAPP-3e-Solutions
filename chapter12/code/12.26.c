@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
   init_mutex();
 
   struct hostent host;
-  gethostbyname_ts("hostname", &host);
+  gethostbyname_ts("127.0.0.1", &host);
   // result in &host
 
   return 0;

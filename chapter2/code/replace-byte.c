@@ -1,5 +1,5 @@
 /*
- * replace-byte
+ * replace-byte.c
  */
 
 #include <stdio.h>

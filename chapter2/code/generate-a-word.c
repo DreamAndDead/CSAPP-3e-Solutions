@@ -1,3 +1,7 @@
+/*
+ * generate-a-word.c
+ */
+
 #include <stdio.h>
 #include <assert.h>
 

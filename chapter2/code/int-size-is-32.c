@@ -1,3 +1,7 @@
+/*
+ * int-size-is-32.c
+ */
+
 #include <stdio.h>
 #include <assert.h>
 

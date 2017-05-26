@@ -1,5 +1,5 @@
 /*
- * any-odd-one
+ * any-odd-one.c
  */
 #include <stdio.h>
 #include <assert.h>

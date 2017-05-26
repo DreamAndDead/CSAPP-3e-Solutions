@@ -7,6 +7,17 @@ Computer Systems: A Programmer's Perspective Third Edition Solutions
 Almost all solutions has its own code piece in c/gas/yas and every code piece
 is tested!
 
+Code files are classified by chapter.
+
+More visit index page of every chapter.
+
+## make
+
+**prerequisite**
+
+- 64bit linux machine, required by `gcc -m64`
+- package `tcl8.5-dev` & `tk8.5-dev`, required by chapter4 processor simulator
+
 clone code
 
     git clone https://github.com/DreamAndDead/CSAPP-3e-Solutions.git

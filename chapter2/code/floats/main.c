@@ -25,10 +25,12 @@ int main(int argc, char* argv[]) {
   init_seed();
 
   for (unsigned n = 0, round = 0; !round; n = n+1) {
-    if (n == 0xFFFF) {
+    if (n == 0xFFF) {
       round++;
     }
 
+    // test all int numbers waste a lot of time
+    // just test 0xFFF random numbers here
     unsigned r = random_int();
     /*r = n;*/
     printf("r:\t0x%.8X\t%d\n", r, r);

@@ -8,6 +8,11 @@ all:
 sym:
 	objdump -d main
 
+test:
+
+.PHONY: clean
+clean:
+	rm main
 
 # vim:ft=make
 #

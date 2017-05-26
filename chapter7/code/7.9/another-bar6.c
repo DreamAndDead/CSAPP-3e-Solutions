@@ -1,5 +1,5 @@
 /*
- * bar6.c
+ * another-bar6.c
  */
 #include <stdio.h>
 

@@ -2,37 +2,48 @@
 
 ## yas simulation
 
-this chapter focus on processor architecture and design a little simple
-processor and yas assemble language designed running on it. we can access the
+This chapter focus on processor architecture and design a little simple
+processor and yas -- a assemble language -- designed running on it.
+
+you can access the
 processor simulation code and simulation manual from csapp official site.
 
-[download simulation code][code]
+[simulation code][code]
 
-[download manual][manual]
+[simulator manual][manual]
 
-I have store the simulation code in chapter4/code/sim directory. you should read
+[code]: http://csapp.cs.cmu.edu/3e/sim.tar
+[manual]: http://csapp.cs.cmu.edu/3e/simguide.pdf
+
+I have saved the simulation code in directory chapter4/code/sim.
+
+Highly recommend you read
 the manual and README in code to know how it works and how to test yas code.
 
 ## test
 
-type:
-- output: watch output to see if it's same with imaganation
-- yas: run sim script to see if "processor" works fine
+code directory: `./code`
 
-|solution|type|run|
-|-|-|-|
+test way:
+- assert means assert function from `<assert.h>`
+- output means to watch code output to judge if it works right
+- yas means using simulator test script to test simulator itself
+
+|solution|code file|test way|
+|:------:|:-------:|:------:|
 |4.45|--|--|
 |4.46|--|--|
-|4.47|output|(cd chapter4/code/bubble-sort; make testA && make testB)|
-|4.48|output|(cd chapter4/code/bubble-sort; make test4.48)|
-|4.49|output|(cd chapter4/code/bubble-sort; make test4.49)|
-|4.50|output|(cd chapter4/code/switch; make test)|
+|4.47|bubble-sort/bubble-sort-pointer.*|output, assert|
+|4.48|bubble-sort/bubble-sort-pointer-3-cmove.*|output|
+|4.49|bubble-sort/bubble-sort-pointer-1-cmove.*|output|
+|4.50|switch/*|output|
 |4.51|--|--|
-|4.52|yas|(cd chapter4/code/iaddq-seq; make test)|
-|4.53|yas|(cd chapter4/code/pipe-stall; make test)|
-|4.54|yas|(cd chapter4/code/iaddq-pipe; make test)|
-|4.55|yas|(cd chapter4/code/pipe-nt; make test)|
-|4.56|yas|(cd chapter4/code/pipe-btfnt; make test)|
-|4.57|yas|(cd chapter4/code/pipe-lf; make test)|
-|4.58|yas|(cd chapter4/code/pipe-1w; make test)|
+|4.52|sim/seq/seq-full.hcl|yas|
+|4.53|sim/pipe/pip-stall.hcl|yas|
+|4.54|sim/pipe/pip-full.hcl|yas|
+|4.55|sim/pipe/pip-nt.hcl|yas|
+|4.56|sim/pipe/pip-btfnt.hcl|yas|
+|4.57|sim/pipe/pip-lf.hcl|yas|
+|4.58|sim/pipe/pip-1w.hcl|yas|
 |4.59|--|--|
+

@@ -6,6 +6,8 @@ YAS = ../sim/misc/yas
 YIS = ../sim/misc/yis
 
 all: assemble
+	gcc -std=c99 main.c bubble-sort-pointer.c \
+		bubble-sort-array.c -o main
 
 assemble:
 	gcc -S -Og bubble-sort-pointer.c
@@ -23,8 +25,6 @@ cmove-1:
 	$(YIS) bubble-sort-pointer-1-cmove.yo
 
 testA:
-	gcc -std=c99 main.c bubble-sort-pointer.c \
-		bubble-sort-array.c -o main
 	./main
 
 testB: pointer
@@ -34,6 +34,10 @@ test4.48: cmove-3
 test4.49: cmove-1
 
 test: testA testB test4.48 test4.49
+
+.PHONY: clean
+clean:
+	rm main *.yo
 
 # vim:ft=make
 #

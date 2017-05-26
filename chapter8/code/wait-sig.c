@@ -1,5 +1,5 @@
 /*
- * 8.test22.sig.c
+ * wait-sig.c
  */
 #include "csapp.h"
 

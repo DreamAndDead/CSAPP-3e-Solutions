@@ -1,5 +1,5 @@
 /*
- * 8.22.c
+ * mysystem.c
  */
 #include <stdio.h>
 #include "csapp.h"
@@ -31,10 +31,10 @@ int mysystem(char* command) {
 int main(int argc, char* argv[]) {
   int code;
 
-  code = mysystem("./8.test22.exit");
+  code = mysystem("./exit-code");
   printf("normally exit, code: %d\n", code); fflush(stdout);
 
-  code = mysystem("./8.test22.sig");
+  code = mysystem("./wait-sig");
   printf("exit caused by signal, code: %d\n", code); fflush(stdout);
   return 0;
 }

@@ -18,3 +18,10 @@ diff:
 	(diff -u ../vm/mm.h mm.h > mm.h.diff; cd .)
 	(diff -u ../vm/memlib.c memlib.c > memlib.c.diff; cd .)
 
+test:
+
+.PHONY: clean
+clean:
+	find . -type f -executable -print0 | xargs -0 rm -f --
+
+

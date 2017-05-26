@@ -15,3 +15,7 @@ test:
 diff:
 	(diff -u mm.c mm.9.17.c > mm.9.17.diff; cd .)
 	(diff -u mm.c mm.9.18.c > mm.9.18.diff; cd .)
+
+.PHONY: clean
+clean:
+	find . -type f -executable -print0 | xargs -0 rm -f --

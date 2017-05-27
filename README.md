@@ -1,12 +1,31 @@
 # CSAPP-3e-Solutions
 
-Computer Systems: A Programmer's Perspective Third Edition Solutions
+**Computer Systems: A Programmer's Perspective Third Edition Solutions**
+
+![csapp3e-cover](./assets/csapp3e-cover.jpg)
+
+## code
+
+github: [DreamAndDead/CSAPP-3e-Solutions](https://github.com/DreamAndDead/CSAPP-3e-Solutions)
+
+Almost all solutions has its own code piece in c/gas/yas and every code piece
+is tested!
+
+Code files are classified by chapter. More info visit index page of every chapter.
 
 ## serve locally
 
 install `gitbook-cli`
 
     npm i -g gitbook-cli
+
+clone code
+
+    git clone https://github.com/DreamAndDead/CSAPP-3e-Solutions.git
+
+cd
+
+    cd CSAPP-3e-Solutions
 
 install plugins
 
@@ -16,14 +35,9 @@ serve
 
     gitbook serve --no-watch
 
-## code
+visit link
 
-Almost all solutions has its own code piece in c/gas/yas and every code piece
-is tested!
-
-Code files are classified by chapter.
-
-More visit index page of every chapter.
+    http://localhost:4000
 
 ## make
 
@@ -44,7 +58,7 @@ make
 
     make
 
-test, after make
+test
 
     make test
 
@@ -60,6 +74,18 @@ in specific solution page:)
 
 [gmail]: mailto:aquairain@gmail.com
 
-## LICENSE
+## license
 
 GPLv3
+
+## donation
+
+I'll be :) if this little book helps you and make your life more convenient.
+
+Would you like to offer me a cup of coffee for a better life? Whether or not, it's
+a choice. Choice means freedom. Freedom is the core of Open Source. Long Live
+Open Source.
+
+|**Paypal**|**Alipay**|
+|:-:|:-:|
+|![paypal](./assets/paypal.png)|![alipay](./assets/alipay.jpg)|

@@ -89,8 +89,3 @@ Open Source.
 |**Paypal**|**Alipay**|
 |:-:|:-:|
 |![paypal](./assets/paypal.png)|![alipay](./assets/alipay.jpg)|
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/DreamAndDead/CSAPP-3e-Solutions/badge.svg?style=beer-square)](https://beerpay.io/DreamAndDead/CSAPP-3e-Solutions)  [![Beerpay](https://beerpay.io/DreamAndDead/CSAPP-3e-Solutions/make-wish.svg?style=flat-square)](https://beerpay.io/DreamAndDead/CSAPP-3e-Solutions?focus=wish)

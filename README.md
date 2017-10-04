@@ -85,7 +85,3 @@ I'll be :) if this little book helps you and make your life more convenient.
 Would you like to offer me a cup of coffee for a better life? Whether or not, it's
 a choice. Choice means freedom. Freedom is the core of Open Source. Long Live
 Open Source.
-
-|**Paypal**|**Alipay**|
-|:-:|:-:|
-|![paypal](./assets/paypal.png)|![alipay](./assets/alipay.jpg)|

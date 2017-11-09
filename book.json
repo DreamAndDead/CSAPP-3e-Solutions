@@ -1,8 +1,6 @@
 {
-  "plugins": [ "include", "disqus", "mathjax", "ga" ],
+  "plugins": [ "include", "disqus", "katex", "ga" ],
   "pluginsConfig": {
-    "mathjax": {
-    },
     "disqus": {
       "shortName": "csapp-solutions"
     },

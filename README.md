@@ -15,17 +15,14 @@ Code files are classified by chapter. More info visit index page of every chapte
 
 ## serve locally
 
-install `gitbook-cli`
-
-    npm i -g gitbook-cli
-
 clone code
 
     git clone https://github.com/DreamAndDead/CSAPP-3e-Solutions.git
-
-cd
-
     cd CSAPP-3e-Solutions
+
+install `gitbook-cli`
+
+    npm i -g gitbook-cli
 
 install plugins
 
@@ -49,12 +46,9 @@ visit link
 clone code
 
     git clone https://github.com/DreamAndDead/CSAPP-3e-Solutions.git
-
-cd
-
     cd CSAPP-3e-Solutions
 
-make
+compile
 
     make
 
@@ -65,6 +59,20 @@ test
 clean
 
     make clean
+
+## generate ebook
+
+**prerequisite**
+
+- ebook-convert, install by `apt install calibre`
+
+generate book
+
+    gitbook pdf ./ ./csapp-3e-solutions.pdf
+    gitbook mobi ./ ./csapp-3e-solutions.mobi
+    gitbook epub ./ ./csapp-3e-solutions.epub
+
+ref: [gitbook toolchain: ebook](https://toolchain.gitbook.com/ebook.html)
 
 
 ## feedback

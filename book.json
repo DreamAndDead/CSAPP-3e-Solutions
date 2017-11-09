@@ -2,7 +2,6 @@
   "plugins": [ "include", "disqus", "mathjax", "ga" ],
   "pluginsConfig": {
     "mathjax": {
-      "forceSVG": true
     },
     "disqus": {
       "shortName": "csapp-solutions"

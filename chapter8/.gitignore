@@ -21,3 +21,7 @@
 8.shell
 8.sleep
 8.loop
+
+exit-code
+mysystem
+wait-sig

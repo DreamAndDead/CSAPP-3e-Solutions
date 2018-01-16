@@ -4,6 +4,21 @@
 
 ![csapp3e-cover](./assets/csapp3e-cover.jpg)
 
+## issues
+
+> Hurry makes faulty work and no improvement makes it disappointed.
+
+Thanks every improvement makes the project better.
+
+|issue|from |by|status|
+|-----|-----|--|------|
+|solution 2.84 seems to have a problem|[github issue#1](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/1)|[littlecoke](https://github.com/littlecoke)|open|
+|solution 9.16 seems to have a problem|[github issue#4](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/4)|[upupming](https://github.com/upupming)|open|
+|Problem 3.66|[github issue#5](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/5)|[gonglinyuan](https://github.com/gonglinyuan)|open|
+|solution 9.13|[disqus comment on 9.13](https://dreamanddead.gitbooks.io/csapp-3e-solutions/chapter9/9.13.html)|[727hiter](https://disqus.com/by/727hiter/)|open|
+|solution 9.16|[disqus comment on 9.16](https://dreamanddead.gitbooks.io/csapp-3e-solutions/chapter9/9.16.html)|[727hiter](https://disqus.com/by/727hiter/), [欧阳Andy](https://disqus.com/by/disqus_R9DeVCmd0p/)|open|
+
+
 ## code
 
 github: [DreamAndDead/CSAPP-3e-Solutions](https://github.com/DreamAndDead/CSAPP-3e-Solutions)
@@ -86,7 +101,7 @@ in specific solution page:)
 
 GPLv3
 
-## donation
+## at last
 
 I'll be :) if this little book helps you and make your life more convenient.
 

@@ -1,5 +1,10 @@
 # Machine-Level Representation of Programs
 
+> **Quote**
+> To understand a program, you must become both the machine and the program.
+> 
+> by Alan Perlis 
+
 3.1 - 3.57 visit book
 
 3.58 - 3.75 visit here

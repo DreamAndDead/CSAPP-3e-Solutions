@@ -1,5 +1,10 @@
 # System-Level I/O
 
+> **Quote**
+> I think the major good idea in Unix was its clean and simple interface: open, close, read, and write.
+>
+> by Ken Thompson
+
 10.1 - 10.5 visit book
 
 10.6 - 10.10 visit here

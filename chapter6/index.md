@@ -1,5 +1,10 @@
 # The Memory Hierarchy
 
+> **Quote**
+> The more storage you have, the more stuff you accumulate.
+> 
+> by Alexis Stewart
+
 6.1 - 6.21 visit book
 
 6.22 - 6.46 visit here

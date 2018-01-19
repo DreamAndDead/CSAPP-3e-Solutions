@@ -1,5 +1,11 @@
 # Network Programming
 
+> **Quote**
+> A brain is a society of very small, simple modules that cannot be said to be thinking, that are not smart in themselves.
+> But when you have a network of them together, out of that arises a kind of smartness.
+> 
+> by Kevin Kelly
+
 11.1 - 11.5 visit book
 
 11.6 - 11.13 visit here

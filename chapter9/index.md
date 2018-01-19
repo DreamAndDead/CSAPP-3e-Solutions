@@ -1,5 +1,11 @@
 # Virtual Memory
 
+> **Quote**
+> I wanted to have virtual memory, at least as it's coupled with file systems.
+>
+> by Ken Thompson
+
+
 9.1 - 9.10 visit book
 
 9.11 - 9.20 visit here

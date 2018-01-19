@@ -1,5 +1,10 @@
 # Optimizing Program Performance
 
+> **Quote**
+> We are all tasked to balance and optimize ourselves.
+> 
+> by Mae Jemison
+
 5.1 - 5.12 visit book
 
 5.13 - 5.19 visit here

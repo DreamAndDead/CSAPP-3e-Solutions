@@ -1,5 +1,11 @@
 # Linking
 
+> **Quote**
+> Our ultimate goal is extensible programming. By this, we mean the construction of hierarchies of modules,
+> each module adding new functionality to the system.
+> 
+> by Niklaus Wirth 
+
 7.1 - 7.5 visit book
 
 7.6 - 7.13 visit here

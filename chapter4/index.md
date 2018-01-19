@@ -1,5 +1,10 @@
 # Processor Architecture
 
+> **Quote**
+> The speed at which modern CPUs perform computations still blows my mind daily.
+> 
+> by Markus Persson
+
 4.1 - 4.44 visit book
 
 4.45 - 4.59 visit here

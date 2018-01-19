@@ -1,11 +1,16 @@
 {
-  "plugins": [ "include", "disqus", "katex", "ga" ],
-  "pluginsConfig": {
-    "disqus": {
-      "shortName": "csapp-solutions"
-    },
-    "ga": {
-      "token": "UA-93899485-2"
-    }
+    "plugins": [ "include", "disqus", "katex", "ga", "richquotes" ],
+    "pluginsConfig": {
+      "disqus": {
+            "shortName": "csapp-solutions"
+      },
+      "ga": {
+          "token": "UA-93899485-2"
+      },
+      "richquotes": {
+          "star": {
+              "alert": "warning"
+          }
+      }
   }
 }

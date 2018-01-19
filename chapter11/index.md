@@ -1,10 +1,9 @@
 # Network Programming
 
 > **Quote**
-> A brain is a society of very small, simple modules that cannot be said to be thinking, that are not smart in themselves.
-> But when you have a network of them together, out of that arises a kind of smartness.
+> 640k is enough for anyone, and by the way, what’s a network?
 > 
-> by Kevin Kelly
+> by William Gates III
 
 11.1 - 11.5 visit book
 

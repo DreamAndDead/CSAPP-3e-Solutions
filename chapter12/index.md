@@ -1,5 +1,10 @@
 # Concurrent Programming
 
+> **Quote**
+> Multi-tasking arises out of distraction itself.
+> 
+> by Marilyn vos Savant
+
 12.1 - 12.15 visit book
 
 12.16 - 12.39 visit here

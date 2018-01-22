@@ -1,4 +1,5 @@
 {
+    "gitbook": ">= 3.2.0",
     "plugins": [ "include", "disqus", "katex", "ga", "richquotes" ],
     "pluginsConfig": {
       "disqus": {

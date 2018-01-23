@@ -2,23 +2,28 @@ SHELL := /bin/bash
 
 UID=$(shell id -u)
 GID=$(shell id -g)
-ENV=sudo docker run -it --rm -v ${PWD}:/src -v gitbook:/gitbook -u ${UID}:${GID} dreamanddead/csapp-3e-solutions:env
+MAKE_ENV=sudo docker run -it --rm -v ${PWD}:/src -u ${UID}:${GID} dreamanddead/csapp-3e-solutions:latest
+BOOK_ENV=sudo docker run -it --rm -v ${PWD}:/src -v gitbook:/gitbook -p 4000:4000 -u ${UID}:${GID} dreamanddead/csapp-3e-solutions:latest
 
 all:
-	${ENV} make
+	${MAKE_ENV} make
 
 test:
-	${ENV} make test
-
-env:
-	${ENV} bash
-
-serve:
-	${ENV} gitbook serve
-
-build:
-	${ENV} gitbook build
+	${MAKE_ENV} make test
 
 .PHONY : clean
 clean:
-	${ENV} make clean
+	${MAKE_ENV} make clean
+
+plugin:
+	${BOOK_ENV} gitbook install
+
+serve:
+	${BOOK_ENV} gitbook serve
+
+build:
+	${BOOK_ENV} gitbook build
+
+
+env:
+	${BOOK_ENV} bash

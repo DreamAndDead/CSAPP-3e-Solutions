@@ -4,6 +4,13 @@
 
 ![csapp3e-cover](./assets/csapp3e-cover.jpg)
 
+## at first
+
+Almost all solutions has its own code piece in c/gas/yas and every code piece
+is tested!
+
+Code files are classified by chapter. Please visit the index page of every chapter to see more info.
+
 ## issues
 
 > Hurry makes faulty work and no improvement makes it disappointed.
@@ -13,47 +20,20 @@ Thanks every improvement makes the project better.
 |issue|from |by|status|
 |-----|-----|--|------|
 |solution 2.84 seems to have a problem|[github issue#1](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/1)|[littlecoke](https://github.com/littlecoke)|open|
-|Problem 3.66|[github issue#5](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/5)|[gonglinyuan](https://github.com/gonglinyuan)|open|
+|Problem 3.66|[github issue#5](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/5)|[gonglinyuan](https://github.com/gonglinyuan**|open|
 
 
-## code
+## build
 
-github: [DreamAndDead/CSAPP-3e-Solutions](https://github.com/DreamAndDead/CSAPP-3e-Solutions)
+### prerequisite
+- x64 linux system
+- docker
 
-Almost all solutions has its own code piece in c/gas/yas and every code piece
-is tested!
+pull env image
 
-Code files are classified by chapter. More info visit index page of every chapter.
+    sudo docker pull dreamanddead/csapp-3e-solutions
 
-## serve locally
-
-clone code
-
-    git clone https://github.com/DreamAndDead/CSAPP-3e-Solutions.git
-    cd CSAPP-3e-Solutions
-
-install `gitbook-cli`
-
-    npm i -g gitbook-cli
-
-install plugins
-
-    gitbook install
-
-serve
-
-    gitbook serve --no-watch
-
-visit link
-
-    http://localhost:4000
-
-## make
-
-**prerequisite**
-
-- 64bit linux machine, required by `gcc -m64`
-- package `tcl8.5-dev` & `tk8.5-dev`, required by chapter4 processor simulator
+### code
 
 clone code
 
@@ -72,25 +52,30 @@ clean
 
     make clean
 
-## generate ebook
+### gitbook
 
-**prerequisite**
+**must** install gitbook plugins first before other gitbook actions
 
-- ebook-convert, install by `apt install calibre`
+    make plugin
 
-generate book
+serve book in http://localhost:4000
 
-    gitbook pdf ./ ./csapp-3e-solutions.pdf
-    gitbook mobi ./ ./csapp-3e-solutions.mobi
-    gitbook epub ./ ./csapp-3e-solutions.epub
+    make serve
 
-ref: [gitbook toolchain: ebook](https://toolchain.gitbook.com/ebook.html)
+generate site in ./_book/
 
+    make html
+
+generate E-books in ./
+
+    make pdf
+    make mobi
+    make epub
 
 ## feedback
 
 If you encounter some problem, you can [email me][gmail] or comment on disqus
-in specific solution page:)
+in specific solution page
 
 [gmail]: mailto:aquairain@gmail.com
 
@@ -102,6 +87,4 @@ GPLv3
 
 I'll be :) if this little book helps you and make your life more convenient.
 
-Would you like to offer me a cup of coffee for a better life? Whether or not, it's
-a choice. Choice means freedom. Freedom is the core of Open Source. Long Live
-Open Source.
+Long Live Open Source.

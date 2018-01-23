@@ -1,5 +1,5 @@
---- origin-pipe-full.hcl	2017-05-12 10:15:41.753100002 +0800
-+++ pipe-full.hcl	2017-05-12 10:15:41.757099968 +0800
+--- origin-pipe-full.hcl	2017-11-09 02:57:43.671935966 +0000
++++ pipe-full.hcl	2017-11-09 02:57:43.671935966 +0000
 @@ -158,7 +158,7 @@
  # Is instruction valid?
  bool instr_valid = f_icode in 

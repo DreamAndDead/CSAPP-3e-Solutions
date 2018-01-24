@@ -19,8 +19,7 @@ Thanks every improvement makes the project better.
 
 |issue|from |by|status|
 |-----|-----|--|------|
-|solution 2.84 seems to have a problem|[github issue#1](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/1)|[littlecoke](https://github.com/littlecoke)|open|
-|Problem 3.66|[github issue#5](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/5)|[gonglinyuan](https://github.com/gonglinyuan**|open|
+|solution 2.84 seems to have a problem|[github issue#1](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/1)|[littlecoke](https://github.com/littlecoke)|discussing |
 
 
 ## build

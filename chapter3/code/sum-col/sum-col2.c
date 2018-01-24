@@ -3,7 +3,7 @@
  */
 
 #define NR(n) n*3
-#define NC(n) n*4
+#define NC(n) n*4+1
 
 long sum_col2(long n, long A[NR(n)][NC(n)], long j) {
   long i;

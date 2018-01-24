@@ -12,6 +12,3 @@ test:
 .PHONY: clean
 clean:
 	rm main
-
-# vim:ft=make
-#

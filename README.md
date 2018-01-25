@@ -1,4 +1,4 @@
-# CSAPP-3e-Solutions
+# CSAPP-3e-Solutions [![Build Status](https://travis-ci.org/DreamAndDead/CSAPP-3e-Solutions.svg?branch=master)](https://travis-ci.org/DreamAndDead/CSAPP-3e-Solutions)
 
 **Computer Systems: A Programmer's Perspective Third Edition Solutions**
 

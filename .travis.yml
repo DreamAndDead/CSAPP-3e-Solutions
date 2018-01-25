@@ -1,0 +1,15 @@
+sudo: required
+
+language: c
+
+services:
+  - docker
+
+before_install:
+  - docker --version
+  - docker pull dreamanddead/csapp-3e-solutions
+
+script:
+  - make
+  - make test
+  - make clean

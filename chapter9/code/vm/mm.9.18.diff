@@ -1,5 +1,5 @@
 --- mm.c	2017-11-09 02:57:43.679935907 +0000
-+++ mm.9.18.c	2017-11-09 02:57:43.679935907 +0000
++++ mm.9.18.c	2018-02-01 10:08:47.563747327 +0000
 @@ -20,7 +20,7 @@
  #define MAX(x, y) ((x) > (y)? (x) : (y))
  
@@ -44,13 +44,14 @@
  
    /* Search the free list for a fit */
    if ((bp = find_fit(asize)) != NULL) {  //line:vm:mm:findfitcall
-@@ -136,8 +137,15 @@
+@@ -136,8 +137,16 @@
    }
    /* $begin mmfree */
  
 -  PUT(HDRP(bp), PACK(size, 0));
 -  PUT(FTRP(bp), PACK(size, 0));
 +  PUT(HDRP(bp), PACK(size, 0, GET_PREV_ALLOC(HDRP(bp))));
++  PUT(FTRP(bp), PACK(size, 0, GET_PREV_ALLOC(HDRP(bp))));
 +
 +  if (GET_ALLOC(HDRP(NEXT_BLKP(bp))))
 +    PUT(HDRP(NEXT_BLKP(bp)), PACK(GET_SIZE(HDRP(NEXT_BLKP(bp))), 1, 0));
@@ -62,7 +63,7 @@
    coalesce(bp);
  }
  
-@@ -148,7 +156,7 @@
+@@ -148,7 +157,7 @@
  /* $begin mmfree */
  static void *coalesce(void *bp)
  {
@@ -71,7 +72,7 @@
    size_t next_alloc = GET_ALLOC(HDRP(NEXT_BLKP(bp)));
    size_t size = GET_SIZE(HDRP(bp));
  
-@@ -158,22 +166,22 @@
+@@ -158,22 +167,22 @@
  
    else if (prev_alloc && !next_alloc) {      /* Case 2 */
      size += GET_SIZE(HDRP(NEXT_BLKP(bp)));
@@ -100,7 +101,7 @@
      bp = PREV_BLKP(bp);
    }
    /* $end mmfree */
-@@ -246,9 +254,9 @@
+@@ -246,9 +255,9 @@
      return NULL;                                        //line:vm:mm:endextend
  
    /* Initialize free block header/footer and the epilogue header */
@@ -113,7 +114,7 @@
  
    /* Coalesce if the previous block was free */
    return coalesce(bp);                                          //line:vm:mm:returnblock
-@@ -267,15 +275,14 @@
+@@ -267,15 +276,14 @@
    size_t csize = GET_SIZE(HDRP(bp));
  
    if ((csize - asize) >= (2*DSIZE)) {

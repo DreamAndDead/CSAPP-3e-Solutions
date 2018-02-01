@@ -5,12 +5,12 @@
 #include <assert.h>
 #include "vm/csapp.h"
 
-int test(char* filename, char* content) {
+void test(char* filename, char* content) {
   int fd;
   char buf[20];
   fd = Open(filename, O_RDONLY, 0);
   Read(fd, buf, strlen(content));
-  return !strncmp(buf, content, strlen(content));
+  assert( !strncmp(buf, content, strlen(content)) );
 }
 
 int touch(char* filename, char* content) {
@@ -23,7 +23,7 @@ int touch(char* filename, char* content) {
 
 int main(int argc, char* argv[]) {
   touch("hello.txt", "Hello, world!");
-  assert(test("hello.txt", "Hello, world!"));
+  test("hello.txt", "Hello, world!");
 
   struct stat stat;
   int fd;
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
   *bufp = 'J';
   Munmap(bufp, size);
 
-  assert(test("hello.txt", "Jello, world!"));
+  test("hello.txt", "Jello, world!");
   return 0;
 }
 

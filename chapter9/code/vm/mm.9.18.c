@@ -138,6 +138,7 @@ void mm_free(void *bp)
   /* $begin mmfree */
 
   PUT(HDRP(bp), PACK(size, 0, GET_PREV_ALLOC(HDRP(bp))));
+  PUT(FTRP(bp), PACK(size, 0, GET_PREV_ALLOC(HDRP(bp))));
 
   if (GET_ALLOC(HDRP(NEXT_BLKP(bp))))
     PUT(HDRP(NEXT_BLKP(bp)), PACK(GET_SIZE(HDRP(NEXT_BLKP(bp))), 1, 0));

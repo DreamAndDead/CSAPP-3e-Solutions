@@ -2,11 +2,10 @@
  * 5.17.c
  */
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-
-#define SPACE (size_t)125
 
 void* basic_memset(void *s, int c, size_t n) {
   size_t cnt = 0;
@@ -34,15 +33,20 @@ void* effective_memset(void *s, unsigned long cs, size_t n) {
     *schar++ = (unsigned char)cs;
     cnt++;
   }
-  /* store K chars one time */
+
+  /* set K chars one time */
   unsigned long *slong = (unsigned long *)schar;
-  /* not cnt < n-K */
-  for (; cnt + K < n; cnt += K) {
+  size_t rest = n - cnt;
+  size_t loop = rest / K;
+  size_t tail = rest % K;
+
+  for (size_t i = 0; i < loop; i++) {
     *slong++ = cs;
   }
-  /* store the rest */
+
+  /* pad the tail part */
   schar = (unsigned char *)slong;
-  for (; cnt < n; cnt++) {
+  for (size_t i = 0; i < tail; i++) {
     *schar++ = (unsigned char)cs;
   }
   return s;
@@ -50,16 +54,24 @@ void* effective_memset(void *s, unsigned long cs, size_t n) {
 
 
 int main(int argc, char* argv[]) {
-  void* basic_space = malloc(SPACE);
-  void* effective_space = malloc(SPACE);
+  size_t space = sizeof(char) * 65537;
+  // careful! malloc SIZE_MAX size memory will make sys slow
+  // or crash down
+  // size_t space = SIZE_MAX;
+
+  void* basic_space = malloc(space);
+  void* effective_space = malloc(space);
 
   int basic_fill = 0xFF;
   unsigned long effective_fill = ~0;
 
-  basic_memset(basic_space, basic_fill, SPACE);
-  effective_memset(effective_space, effective_fill, SPACE);
+  basic_memset(basic_space, basic_fill, space);
+  effective_memset(effective_space, effective_fill, space);
 
-  assert(memcmp(basic_space, effective_space, SPACE) == 0);
+  assert(memcmp(basic_space, effective_space, space) == 0);
+
+  free(basic_space);
+  free(effective_space);
   return 0;
 }
 

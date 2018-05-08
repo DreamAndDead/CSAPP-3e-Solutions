@@ -19,7 +19,7 @@ Thanks every improvement makes the project better.
 
 |issue|from |by|status|
 |-----|-----|--|------|
-|solution 2.84 seems to have a problem|[github issue#1](https://github.com/DreamAndDead/CSAPP-3e-Solutions/issues/1)|[littlecoke](https://github.com/littlecoke)|discussing |
+|disqus 2.63 comment| https://dreamanddead.gitbooks.io/csapp-3e-solutions/chapter2/2.63.html |[hhdx](https://disqus.com/by/disqus_OKqvDerzYD/)|discussing |
 
 
 ## build

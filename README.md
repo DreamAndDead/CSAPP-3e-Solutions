@@ -13,14 +13,9 @@ Code files are classified by chapter. Please visit the index page of every chapt
 
 ## issues
 
-> Hurry makes faulty work and no improvement makes it disappointed.
+> Hurry makes work faulty and no improvement makes it disappointed.
 
-Thanks every improvement makes the project better.
-
-|issue|from |by|status|
-|-----|-----|--|------|
-|disqus 2.63 comment| https://dreamanddead.gitbooks.io/csapp-3e-solutions/chapter2/2.63.html |[hhdx](https://disqus.com/by/disqus_OKqvDerzYD/)|discussing |
-
+Thanks every issue and pr, they really make this project better.
 
 ## build
 

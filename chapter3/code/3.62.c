@@ -9,8 +9,8 @@ long switch3(long *p1, long *p2, mode_t action) {
   long result = 0;
   switch(action) {
     case MODE_A:
-      *p2 = *p1;
       result = *p2;
+      *p2 = *p1;
       break;
     case MODE_B:
       *p1 = *p1 + *p2;

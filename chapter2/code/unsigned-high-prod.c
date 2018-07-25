@@ -3,33 +3,47 @@
  */
 #include <stdio.h>
 #include <assert.h>
+#include <limits.h>
 #include <inttypes.h>
 
-int signed_high_prod(int x, int y) {
-  int64_t mul = (int64_t) x * y;
-  return mul >> 32;
+int signed_high_prod(int x, int y)
+{
+    int64_t mul = (int64_t)x * y;
+    int res = mul >> 32;
+    return res;
 }
 
-unsigned unsigned_high_prod(unsigned x, unsigned y) {
-  /* TODO calculations */
-  int sig_x = x >> 31;
-  int sig_y = y >> 31;
-  int signed_prod = signed_high_prod(x, y);
-  return signed_prod + x * sig_y + y * sig_x;
+unsigned unsigned_high_prod(unsigned x, unsigned y)
+{
+
+    unsigned hp = signed_high_prod(x, y);
+
+    int sig_mask = INT_MIN;
+
+    /**
+     * 68 页的 (2-18) 中
+     * 带有 2^w 权重的项会出现在高 w 位中
+     */
+
+    (x & sig_mask) && (hp += y);
+    (y & sig_mask) && (hp += x);
+
+    return hp;
 }
 
-/* a theorically correct version to test unsigned_high_prod func */
-unsigned another_unsigned_high_prod(unsigned x, unsigned y) {
-  uint64_t mul = (uint64_t) x * y;
-  return mul >> 32;
+unsigned unsigned_high_prod_2(unsigned x, unsigned y)
+{
+    uint64_t mul = (uint64_t)x * y;
+    return mul >> 32;
 }
 
-int main(int argc, char* argv[]) {
-  unsigned x = 0x12345678;
-  unsigned y = 0xFFFFFFFF;
+int main(int argc, char *argv[])
+{
+    unsigned x = 0x12345678;
+    unsigned y = 0xFFFFFFFF;
 
-  assert(another_unsigned_high_prod(x, y) == unsigned_high_prod(x, y));
-  return 0;
+    printf("unsigned(%X, %X) = %X\n", x, y, unsigned_high_prod(x, y));
+    assert(unsigned_high_prod_2(x, y) == unsigned_high_prod(x, y));
+
+    return 0;
 }
-
-

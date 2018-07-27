@@ -18,8 +18,8 @@ float_bits float_twice(float_bits f) {
   if (exp == 0) {
     /* Denormalized */
     frac <<= 1;
-  } else if (exp == 0xFF - 1) {
-    /* twice to oo */
+  } else if (exp == 0xFE || exp == 0xFF) {
+    /* twice to INF */
     exp = 0xFF;
     frac = 0;
   } else {

@@ -11,6 +11,7 @@ int tsub_ok(int x, int y)
     int res = 1;
 
     (y == INT_MIN) && (res = 0);
+    // if (y == INT_MIN) res = 0;
 
     int sub = x - y;
     int pos_over = x > 0 && y < 0 && sub < 0;

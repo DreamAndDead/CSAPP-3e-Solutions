@@ -16,7 +16,9 @@ void* another_calloc(size_t nmemb, size_t size) {
   /* a good way to check overflow or not */
   if (nmemb == buf_size / size) {
     void* ptr = malloc(buf_size);
-    memset(ptr, 0, buf_size);
+    if(ptr != NULL) {
+      memset(ptr, 0, buf_size);
+    }
     return ptr;
   }
   return NULL;

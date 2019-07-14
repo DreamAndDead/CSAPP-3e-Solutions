@@ -49,12 +49,11 @@ int float_f2i(float_bits f) {
     num = 0x80000000;
   } else {
     E = exp - bias;
-    M = frac | 0x800000;
     if (E > 23) {
-      num = M << (E - 23);
+      num = (1 << E) | (frac << (E - 23));
     } else {
       /* whether sig is 1 or 0, round to zero */
-      num = M >> (23 - E);
+      num = (1 << E) | (frac >> (23 - E));
     }
   }
 

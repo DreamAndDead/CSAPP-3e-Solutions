@@ -9,7 +9,7 @@ unsigned srl(unsigned x, int k) {
   unsigned xsra = (int) x >> k;
 
   int w = sizeof(int) << 3;
-  int mask = (int) -1 << (w - k);
+  int mask = -1 << (w - k - 1) << 1;
   return xsra & ~mask;
 }
 
@@ -17,7 +17,7 @@ int sra(int x, int k) {
   int xsrl = (unsigned) x >> k;
 
   int w = sizeof(int) << 3;
-  int mask = (int) -1 << (w - k);
+  int mask = -1 << (w - k - 1) << 1;
   //let mask remain unchanged when the first bit of x is 1, otherwise 0.
   int m = 1 << (w - 1);
   mask &= ! (x & m) - 1;
@@ -32,10 +32,16 @@ int main(int argc, char* argv[]) {
   assert(sra(test_int, 4) == test_int >> 4);
 
   test_unsigned = 0x87654321;
-	test_int = 0x87654321;
+  test_int = 0x87654321;
 
-	assert (srl (test_unsigned, 4) == test_unsigned >> 4);
-	assert (sra (test_int, 4) == test_int >> 4);
+  assert (srl (test_unsigned, 4) == test_unsigned >> 4);
+  assert (sra (test_int, 4) == test_int >> 4);
+  
+  test_unsigned = 0xFFFFFFFF;
+  test_int = 0x80000000;
+
+  assert (srl (test_unsigned, 0) == test_unsigned >> 0);
+  assert (sra (test_int, 0) == test_int >> 0);
   
   return 0;
 }

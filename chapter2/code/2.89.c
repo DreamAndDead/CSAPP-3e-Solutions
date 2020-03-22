@@ -25,11 +25,12 @@ int C(double dx, double dy, double dz) {
   return (dx+dy)+dz == dx+(dy+dz);
 }
 
-/*
- * wrong
- *
- * FIXME I don't know what conditions cause false
- */
+// wrong
+// double can store integer value at most 2^53 precisely
+// it's possible that the value is over 2^53
+// when (long)x*y > 2^53 && (long)x*y << 53 != 0 &&
+//      (long)y*z > 2^53 && (long)y*z << 53 != 0 
+// like 0x7fff ffff,0x7ffc fcfe,0x7efe feee
 int D(double dx, double dy, double dz) {
   return (dx*dy)*dz == dx*(dy*dz);
 }

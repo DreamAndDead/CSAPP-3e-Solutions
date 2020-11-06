@@ -29,6 +29,16 @@ int C(double dx, double dy, double dz) {
  * wrong
  *
  * FIXME I don't know what conditions cause false
+ * 
+ * This equation is mathmatically true but wrong in bit-level operations. 
+ * The crux of this problem is that when we use floating-point numbers, we are in fact using
+ * the approximation based on IEEE standard and not the exact value.
+ * Hence, when we try to do operations like multiplications in this problem, the computer will
+ * give us approximations. During the process, the operations order matters, as we cannot
+ * guarantee that the approximation of (dx * dy) * dz is equal to dx * (dy * dz).
+ * More importantly, we will never use == or != to compare the value between two floating-point values,
+ * instead, try to calculate the difference and make sure the difference is below a level you feel comfortable
+ * or meet the project requirements.
  */
 int D(double dx, double dy, double dz) {
   return (dx*dy)*dz == dx*(dy*dz);

@@ -1,31 +1,18 @@
 +++
-title = "Chapter 2"
+title = "Representing and Manipulating Information"
 date = 2021-02-26T09:15:46+08:00
 weight = 2
 chapter = true
 pre = "<b>2. </b>"
 +++
 
+# Chapter 2
 
-# Representing and Manipulating Information
+### Representing and Manipulating Information
 
-
-> **Quote**
 > Everything is physics and math.
 > 
 > by Katherine Johnson
-
-
-2.1 - 2.54 visit book
-
-2.55 - 2.97 visit here
-
-code directory: `./code`
-
-test way:
-
-- assert means assert function from `<assert.h>`
-- output means to watch code output to judge if it works right
 
 |solution|code file|test way|
 |:------:|:-------:|:------:|

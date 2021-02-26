@@ -1,30 +1,18 @@
 +++
-title = "Chapter 3"
+title = "Machine-Level Representation of Programs"
 date = 2021-02-26T09:15:46+08:00
 weight = 3
 chapter = true
 pre = "<b>3. </b>"
 +++
 
-# Machine-Level Representation of Programs
+# Chapter 3
 
-> **Quote**
+### Machine-Level Representation of Programs
+
 > To understand a program, you must become both the machine and the program.
 > 
 > by Alan Perlis 
-
-3.1 - 3.57 visit book
-
-3.58 - 3.75 visit here
-
-## test
-
-code directory: `./code`
-
-test way:
-
-- assert means assert function from `<assert.h>`
-- output means to watch code output to judge if it works right
 
 |solution|code file|test way|
 |:------:|:-------:|:------:|

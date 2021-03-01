@@ -22,24 +22,6 @@ clean:
 	${MAKE_ENV} make -f makefile.code clean
 
 
-plugin:
-	${BOOK_ENV} gitbook install
-
 serve:
-	${BOOK_SERVE_ENV} gitbook serve --no-watch
+	(cd site; hugo server -b http://localhost:1313/; cd ..)
 
-html:
-	${BOOK_ENV} gitbook build
-
-pdf:
-	${BOOK_ENV} gitbook pdf ./ ./csapp-3e-solutions.pdf
-
-mobi:
-	${BOOK_ENV} gitbook mobi ./ ./csapp-3e-solutions.mobi
-
-epub:
-	${BOOK_ENV} gitbook epub ./ ./csapp-3e-solutions.epub
-
-
-env:
-	${BOOK_ENV} bash

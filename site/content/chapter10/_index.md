@@ -1,28 +1,18 @@
 +++
-title = "Chapter 10"
+title = "System-Level I/O"
 date = 2021-02-26T09:15:46+08:00
 weight = 10
 chapter = true
 pre = "<b>10. </b>"
 +++
-# System-Level I/O
 
-> **Quote**
+# Chapter 10
+
+### System-Level I/O
+
 > I think the major good idea in Unix was its clean and simple interface: open, close, read, and write.
 >
 > by Ken Thompson
-
-10.1 - 10.5 visit book
-
-10.6 - 10.10 visit here
-
-## test
-
-code directory: `./code`
-
-test way:
-- assert means assert function from `<assert.h>`
-- output means to watch code output to judge if it works right
 
 |solution|code file|test way|
 |:------:|:-------:|:------:|

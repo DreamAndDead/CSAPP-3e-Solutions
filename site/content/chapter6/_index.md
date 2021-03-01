@@ -1,29 +1,18 @@
 +++
-title = "Chapter 6"
+title = "The Memory Hierarchy"
 date = 2021-02-26T09:15:46+08:00
 weight = 6
 chapter = true
 pre = "<b>6. </b>"
 +++
-# The Memory Hierarchy
 
-> **Quote**
+# Chapter 6
+
+### The Memory Hierarchy
+
 > The more storage you have, the more stuff you accumulate.
 > 
 > by Alexis Stewart
-
-6.1 - 6.21 visit book
-
-6.22 - 6.46 visit here
-
-## test
-
-code directory: `./code`
-
-test way:
-
-- assert means assert function from `<assert.h>`
-- output means to watch code output to judge if it works right
 
 |solution|code file|test way|
 |:------:|:-------:|:------:|

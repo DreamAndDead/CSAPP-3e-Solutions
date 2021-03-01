@@ -22,6 +22,12 @@ test way:
 - output means to watch code output to judge if it works right
 - unittest?
 
+test way:
+- assert means assert function from `<assert.h>`
+- output means to watch code output to judge if it works right
+- yas means using simulator test script to test simulator itself
+
+
 
 ## todo
 

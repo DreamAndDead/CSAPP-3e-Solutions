@@ -8,7 +8,7 @@ chapter = true
 
 ### Computer Systems: A Programmer's Perspective Third Edition Solutions
 
-![](/csapp3e-cover.jpg)
+![](./csapp3e-cover.jpg)
 
 ## Code Test Convention
 

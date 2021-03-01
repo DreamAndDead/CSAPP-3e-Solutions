@@ -18,5 +18,5 @@ clean:
 	${MAKE_ENV} make -f makefile.code clean
 
 serve:
-	(cd site; hugo server -b http://localhost:1313/; cd ..)
+	(cd site; hugo server -b http://localhost:1313/CSAPP-3e-Solutions/; cd ..)
 

@@ -1,5 +1,7 @@
 baseURL = "https://dreamanddead.github.io/CSAPP-3e-Solutions/"
 languageCode = "en-us"
+defaultContentLanguage = "en"
+
 title = "CASPP 3e Solutions"
 theme = "hugo-theme-learn"
 
@@ -10,11 +12,11 @@ home = ["HTML", "RSS", "JSON"]
   # Prefix URL to edit current page. Will display an "Edit this page" button on top right hand corner of every page.
   # Useful to give opportunity to people to create merge request for your doc.
   # See the config.toml file from this documentation site to have an example.
-  editURL = ""
+  editURL = "https://github.com/DreamAndDead/CSAPP-3e-Solutions/edit/hugo/site/content/"
   # Author of the site, will be used in meta information
-  author = ""
+  author = "DreamAndDead"
   # Description of the site, will be used in meta information
-  description = ""
+  description = "CASPP 3e Solutions"
   # Shows a checkmark for visited pages on the menu
   showVisitedLinks = false
   # Disable search function. It will hide search bar
@@ -28,13 +30,13 @@ home = ["HTML", "RSS", "JSON"]
   disableShortcutsTitle = false
   # If set to false, a Home button will appear below the search bar on the menu.
   # It is redirecting to the landing page of the current language if specified. (Default is "/")
-  disableLandingPageButton = false
+  disableLandingPageButton = true
   # When using mulitlingual website, disable the switch language button.
   disableLanguageSwitchingButton = false
   # Hide breadcrumbs in the header and only show the current page title
   disableBreadcrumb = false
   # If set to true, prevents Hugo from including the mermaid module if not needed (will reduce load times and traffic)
-  disableMermaid = false
+  disableMermaid = true
   # Specifies the remote location of the mermaid js
   customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
   # Hide Next and Previous page buttons normally displayed full height beside content
@@ -47,3 +49,18 @@ home = ["HTML", "RSS", "JSON"]
   custom_css = []
   # Change the title separator. Default to "::".
   titleSeparator = "-"
+
+[Languages]
+[Languages.en]
+title = "Documentation for Hugo Learn Theme"
+weight = 1
+languageName = "English"
+landingPageURL = "/"
+landingPageName = "<i class='fas fa-home'></i> Home"
+
+[[Languages.en.menu.shortcuts]]
+name = "<i class='fab fa-fw fa-github'></i> GitHub repo"
+identifier = "ds"
+url = "https://github.com/DreamAndDead/CSAPP-3e-Solutions/"
+weight = 10
+

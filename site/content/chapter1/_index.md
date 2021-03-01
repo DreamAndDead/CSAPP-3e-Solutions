@@ -14,4 +14,4 @@ pre = "<b>1. </b>"
 >
 > by Edsger Dijkstra
 
-no homework here.
+No homework in this chapter.

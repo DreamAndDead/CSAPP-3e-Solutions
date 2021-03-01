@@ -1,4 +1,14 @@
-# home page
++++
+title = "CSAPP-3e-Solutions"
+date = 2021-02-26T09:15:46+08:00
+chapter = true
++++
+
+# CSAPP-3e-Solutions
+
+### Computer Systems: A Programmer's Perspective Third Edition Solutions
+
+![](/csapp3e-cover.jpg)
 
 ## why hugo
 

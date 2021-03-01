@@ -37,7 +37,7 @@ test: testA testB test4.48 test4.49
 
 .PHONY: clean
 clean:
-	rm main *.yo
+	rm -f main *.yo
 
 # vim:ft=make
 #

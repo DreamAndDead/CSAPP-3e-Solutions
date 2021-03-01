@@ -14,7 +14,7 @@ pre = "<b>8. </b>"
 > 
 > by Margaret Fuller
 
-`csapp.h & csapp.c` is downloaded from csapp [site][csapp]
+`csapp.h & csapp.c` is downloaded from [csapp official site][csapp]
 
 [csapp]: http://csapp.cs.cmu.edu/3e/code.html
 

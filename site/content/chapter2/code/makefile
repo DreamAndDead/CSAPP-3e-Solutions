@@ -23,4 +23,4 @@ test: $(PROGS_TEST)
 .PHONY : clean
 clean:
 	(cd floats; make clean)
-	find . -type f -executable -print0 | xargs -0 rm --
+	find . -type f -executable -print0 | xargs -0 rm -f --

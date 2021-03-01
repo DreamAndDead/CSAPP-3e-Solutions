@@ -24,9 +24,3 @@ pre = "<b>5. </b>"
 |5.18|5.18.c|assert|
 |5.19|5.19.c|assert|
 
-[gperftools]: https://github.com/gperftools/gperftools
-
-for 5.18 & 5.19, you can measure its performance.
-
-    (cd chapter5/code; make 5.18.prof)
-    (cd chapter5/code; make 5.18.prof)

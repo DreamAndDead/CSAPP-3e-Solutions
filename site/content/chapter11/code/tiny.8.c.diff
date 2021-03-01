@@ -1,5 +1,5 @@
---- tiny.origin.c	2017-11-09 02:57:43.651936112 +0000
-+++ tiny.8.c	2017-11-09 02:57:43.651936112 +0000
+--- tiny.origin.c	2021-02-25 07:26:33.302592754 +0000
++++ tiny.8.c	2021-02-25 07:26:33.302592754 +0000
 @@ -12,6 +12,7 @@
  void serve_dynamic(int fd, char *filename, char *cgiargs);
  void clienterror(int fd, char *cause, char *errnum,

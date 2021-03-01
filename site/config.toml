@@ -1,4 +1,4 @@
-baseURL = "https://dreamanddead.github.io/csapp-3e-solutions/"
+baseURL = "https://dreamanddead.github.io/CSAPP-3e-Solutions/"
 languageCode = "en-us"
 title = "CASPP 3e Solutions"
 theme = "hugo-theme-learn"

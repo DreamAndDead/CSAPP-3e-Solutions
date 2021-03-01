@@ -1,8 +1,7 @@
-baseURL = "http://example.org/"
+baseURL = "https://dreamanddead.github.io/csapp-3e-solutions/"
 languageCode = "en-us"
 title = "CASPP 3e Solutions"
 theme = "hugo-theme-learn"
-
 
 [outputs]
 home = ["HTML", "RSS", "JSON"]

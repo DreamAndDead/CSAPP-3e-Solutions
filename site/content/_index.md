@@ -10,41 +10,13 @@ chapter = true
 
 ![](/csapp3e-cover.jpg)
 
-## why hugo
+## Code Test Convention
 
-- fast
-- go is cool
-- modern
-- gitbook deperated
-
-## 约定
-
-code directory: `./code`
-
-gcc version
-
-linux platform
-
-compile first
-
-test way:
-- assert means assert function from `<assert.h>`
-- output means to watch code output to judge if it works right
-- unittest?
-
-test way:
-- assert means assert function from `<assert.h>`
-- output means to watch code output to judge if it works right
-- yas means using simulator test script to test simulator itself
-test way:
-- browser means start server and use browser visit server and watch result
-test way:
-- output means to watch code output to judge if it works right
-- benchmark means using wrk/ab to make lots of connections at same time to test
-    server
-
-
-## todo
-
-- disqus
+| test way  | description                                                        |
+|-----------|--------------------------------------------------------------------|
+| assert    | use assert function from `<assert.h>`                              |
+| output    | watch code output to judge if it works right                       |
+| yas       | use simulator test script to test simulator itself                 |
+| browser   | start server and use browser visit server and watch result         |
+| benchmark | use wrk/ab to make lots of connections at same time to test server |
 

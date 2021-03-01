@@ -1,34 +1,22 @@
 +++
-title = "Chapter 12"
+title = "Concurrent Programming"
 date = 2021-02-26T09:15:46+08:00
 weight = 12
 chapter = true
 pre = "<b>12. </b>"
 +++
-# Concurrent Programming
 
-> **Quote**
+# Chapter 12
+
+### Concurrent Programming
+
 > Multi-tasking arises out of distraction itself.
 > 
 > by Marilyn vos Savant
 
-12.1 - 12.15 visit book
-
-12.16 - 12.39 visit here
-
-## test
-
-**prerequisite**
 - need [wrk](https://github.com/wg/wrk) to benchmark server in 35, 36, 37, 38
 - need package `apache2-utils`(required by command line `ab`) to benchmark
     proxy server
-
-code directory: `./code`
-
-test way:
-- output means to watch code output to judge if it works right
-- benchmark means using wrk/ab to make lots of connections at same time to test
-    server
 
 |solution|code file|test way|
 |:------:|:-------:|:------:|

@@ -26,12 +26,15 @@ test way:
 - assert means assert function from `<assert.h>`
 - output means to watch code output to judge if it works right
 - yas means using simulator test script to test simulator itself
-
+test way:
+- browser means start server and use browser visit server and watch result
+test way:
+- output means to watch code output to judge if it works right
+- benchmark means using wrk/ab to make lots of connections at same time to test
+    server
 
 
 ## todo
 
-
-- latex support
 - disqus
 

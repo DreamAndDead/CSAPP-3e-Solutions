@@ -1,0 +1,22 @@
+--- adder.c	2021-02-25 07:26:33.299259442 +0000
++++ form-adder.c	2021-02-25 07:26:33.299259442 +0000
+@@ -1,5 +1,5 @@
+ /*
+- * adder.c - a minimal CGI program that adds two numbers together
++ * form-adder.c - a minimal CGI program that adds two numbers together
+  */
+ #include "../csapp.h"
+ 
+@@ -12,10 +12,8 @@
+   if ((buf = getenv("QUERY_STRING")) != NULL) {
+     p = strchr(buf, '&');
+     *p = '\0';
+-    strcpy(arg1, buf);
+-    strcpy(arg2, p+1);
+-    n1 = atoi(arg1);
+-    n2 = atoi(arg2);
++    sscanf(buf, "first=%d", &n1);
++    sscanf(p+1, "second=%d", &n2);
+   }
+ 
+   /* Make the response body */

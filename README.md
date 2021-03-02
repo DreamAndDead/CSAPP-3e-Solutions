@@ -4,19 +4,6 @@
 
 ![csapp3e-cover](./assets/csapp3e-cover.jpg)
 
-## at first
-
-Almost all solutions has its own code piece in c/gas/yas and every code piece
-is tested!
-
-Code files are classified by chapter. Please visit the index page of every chapter to see more info.
-
-## issues
-
-> Hurry makes work faulty and no improvement makes it disappointed.
-
-Thanks every issue and pr, they really make this project better.
-
 ## build
 
 ### prerequisite

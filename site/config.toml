@@ -4,6 +4,9 @@ defaultContentLanguage = "en"
 title = "CASPP 3e Solutions"
 theme = "hugo-theme-learn"
 
+disqusShortname = "csapp-solutions"
+googleAnalytics = "UA-93899485-2"
+
 [outputs]
 home = ["HTML", "RSS", "JSON"]
 

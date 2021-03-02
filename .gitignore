@@ -7,3 +7,4 @@ main
 *.epub
 *.mobi
 core
+site/

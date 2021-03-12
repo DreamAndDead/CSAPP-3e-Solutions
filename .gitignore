@@ -8,3 +8,5 @@ main
 *.mobi
 core
 site/
+*.origin
+

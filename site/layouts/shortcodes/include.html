@@ -1,0 +1,10 @@
+{{ $file := .Get "file" }}
+
+{{- if eq (.Get "markdown") "true" -}}
+{{- $file | readFile | $.Page.RenderString -}}
+{{- else if (.Get "language") -}}
+{{- highlight ($file | readFile) (.Get "language") (default "linenos=false" (.Get "options")) -}}
+{{- else -}}
+{{ $file | readFile | safeHTML }}
+{{- end -}}
+

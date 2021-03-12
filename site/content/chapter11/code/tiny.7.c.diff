@@ -1,0 +1,11 @@
+--- tiny.origin.c	2021-02-25 07:26:33.302592754 +0000
++++ tiny.7.c	2021-02-25 07:26:33.302592754 +0000
+@@ -173,6 +173,8 @@
+     strcpy(filetype, "image/png");
+   else if (strstr(filename, ".jpg"))
+     strcpy(filetype, "image/jpeg");
++  else if (strstr(filename, ".mpeg"))
++    strcpy(filetype, "video/mpeg");
+   else
+     strcpy(filetype, "text/plain");
+ }

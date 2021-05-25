@@ -6,7 +6,7 @@ main
 *.pdf
 *.epub
 *.mobi
+
 core
-site/
 *.origin
 

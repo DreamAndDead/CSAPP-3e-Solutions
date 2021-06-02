@@ -9,13 +9,16 @@
 int tsub_ok(int x, int y)
 {
     int res = 1;
-
-    (y == INT_MIN) && (res = 0);
-    // if (y == INT_MIN) res = 0;
-
     int sub = x - y;
-    int pos_over = x > 0 && y < 0 && sub < 0;
-    int neg_over = x < 0 && y > 0 && sub > 0;
+    int sign_mask = INT_MIN;
+    /*
+     * if x >= 0, y < 0 and res < 0, it's a positive overflow
+     * if x < 0, y > 0 and res > 0, it's a negetive overflow
+     */
+    int pos_over = !(x & sign_mask) && (y & sign_mask)
+        && (sub & sign_mask);
+    int neg_over = (x & sign_mask) && !(y & sign_mask)
+        && !(sub & sign_mask);
 
     res = res && !(pos_over || neg_over);
 

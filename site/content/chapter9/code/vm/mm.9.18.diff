@@ -1,5 +1,5 @@
---- mm.c	2021-02-25 07:26:33.315926002 +0000
-+++ mm.9.18.c	2021-02-25 07:26:33.315926002 +0000
+--- mm.c	2021-06-21 11:56:58.786239610 +0800
++++ mm.9.18.c	2021-06-21 11:56:59.421239574 +0800
 @@ -20,7 +20,7 @@
  #define MAX(x, y) ((x) > (y)? (x) : (y))
  
@@ -131,7 +131,7 @@
 -    PUT(HDRP(bp), PACK(csize, 1));
 -    PUT(FTRP(bp), PACK(csize, 1));
 +    PUT(HDRP(bp), PACK(csize, 1, 1));
-+    PUT(HDRP(NEXT_BLKP(bp)), PACK(csize, 1, 1));
++    *HDRP(NEXT_BLKP(bp)) |= 0x2;
    }
  }
  /* $end mmplace */

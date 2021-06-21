@@ -283,7 +283,7 @@ static void place(void *bp, size_t asize)
   }
   else {
     PUT(HDRP(bp), PACK(csize, 1, 1));
-    PUT(HDRP(NEXT_BLKP(bp)), PACK(csize, 1, 1));
+    *HDRP(NEXT_BLKP(bp)) |= 0x2;
   }
 }
 /* $end mmplace */

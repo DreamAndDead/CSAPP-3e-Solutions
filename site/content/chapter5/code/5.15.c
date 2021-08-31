@@ -22,7 +22,7 @@ void inner4(vec_ptr u, vec_ptr v, data_t *dest) {
   data_t sum4 = (data_t) 0;
   data_t sum5 = (data_t) 0;
 
-  for (i = 0; i < length-6; i+=6) {
+  for (i = 0; i < length-5; i+=6) {
     sum = sum + udata[i] * vdata[i];
     sum1 = sum1 + udata[i+1] * vdata[i+1];
     sum2 = sum2 + udata[i+2] * vdata[i+2];

@@ -5,23 +5,38 @@
 #include <stdio.h>
 #include <assert.h>
 
-unsigned srl(unsigned x, int k) {
-  unsigned xsra = (int) x >> k;
-
-  int w = sizeof(int) << 3;
-  int mask = (int) -1 << (w - k);
-  return xsra & ~mask;
+int is_little_endian() {
+	int x = 1;
+	char *p = (char *) &x;
+	return !!(*p);
 }
 
-int sra(int x, int k) {
-  int xsrl = (unsigned) x >> k;
+/* logical shift right */
+unsigned srl(unsigned x, int k) {
+	/* Perform shift arithmetically */
+	unsigned xsra = (int) x >> k;
+	int w = sizeof(int) << 3;
+	// unsigned mask = !!k * ((1 << (w - k)) - 1) - !k;
+	unsigned mask = (2 << (w - k - 1)) - 1;
+	return xsra & mask;
+}
 
-  int w = sizeof(int) << 3;
-  int mask = (int) -1 << (w - k);
-  //let mask remain unchanged when the first bit of x is 1, otherwise 0.
-  int m = 1 << (w - 1);
-  mask &= ! (x & m) - 1;
-  return xsrl | mask;
+/* arithmetical shift right */
+int sra(int x, int k) {
+	/* Perform shift logically */
+	int xsrl = (unsigned) x >> k;
+	int w = sizeof(int) << 3;
+	int top = (0 - k) & x;
+	unsigned char *ptop = (unsigned char *) &top;
+	ptop += is_little_endian() * (sizeof(int) - 1);
+	int atop = *ptop << 1;
+	unsigned char *patop = (unsigned char *) &atop;
+	patop += is_little_endian() + (!is_little_endian()) * (sizeof(int) - 2);
+	char cres = *patop;
+	cres |= cres << 1; cres |= cres << 2; cres |= cres << 4;
+	int res = cres;
+	unsigned mask = res & ~((1 << (w - k)) - 1);
+	return mask | xsrl;
 }
 
 int main(int argc, char* argv[]) {
